@@ -1,0 +1,265 @@
+/**
+* ----------------------- Generic classes -----------------------
+*
+*/
+@mixin generic-shadow($levels:5) {
+
+	@for $i from 1 through $levels {
+		.shadow-#{$i} {
+			@include shadow($i);
+		}
+	}
+
+}
+
+.uppercase { text-transform: uppercase; }
+.bold { font-weight:bold; }
+.italic { font-style:italic; }
+
+.regular {
+	font-size: 1em;
+}
+.small {
+	font-size: 0.75em;
+}
+.tiny {
+	font-size: 0.5em;
+}
+.medium {
+	font-size: 1.25em;
+}
+.big {
+	font-size: 1.5em;
+}
+.huge {
+	font-size: 1.75em;
+}
+.giant {
+	font-size: 2em;
+}
+
+.text-x2 {font-size:2em;}
+.text-x3 {font-size:3em;}
+.text-x4 {font-size:4em;}
+.text-x5 {font-size:5em;}
+.text-x6 {font-size:6em;}
+ 
+.hidden {
+	display: none!important; 
+}
+
+.transparent {
+	background:transparent!important;
+}
+
+.absolute {
+	position:absolute!important;
+}
+
+.absolute.left{left:0;}
+.absolute.right{right:0;}
+.absolute.top{top:0;}
+.absolute.bottom{bottom:0;}
+
+.fixed {
+	position:fixed;
+}
+
+.fixed.top {top:0;}
+.fixed.bottom {bottom:0;}
+.fixed.left {left:0;}
+.fixed.right {right:0;}
+
+.halign-center {
+	@include center(true,false);
+}
+
+.valign-center {
+	@include center(false,true);
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.clear {
+	clear:both;
+}
+
+ 
+
+.glass-dark {
+	background:rgba(0,0,0,0.8)!important;
+}
+ 
+ 
+
+.radius-0 { border-radius: 0px!important; }
+.radius-5 { border-radius: 5px!important; }
+.radius-10 { border-radius: 10px!important; }
+.radius-15 { border-radius: 15px!important; }
+.radius-20 { border-radius: 20px!important; }
+.radius-25 { border-radius: 25px!important; }
+.ellipse { border-radius: 50%!important; }
+.circle {
+	width: 100%;
+	height: 0;
+	padding-bottom: 100%;
+
+}
+
+.border-0 { border-width:0px!important; }
+.border-1 { border-width:1px!important; }
+.border-2 { border-width:2px!important; }
+.border-3 { border-width:3px!important; }
+.border-4 { border-width:4px!important; }
+.border-5 { border-width:5px!important; }
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.no-margin { margin: 0!important; }
+.no-padding { padding: 0!important; }
+.no-transition { transition: none!important; }
+.no-border { border:0!important; }
+
+.padding-5 { padding:5px!important; }
+.padding-10 { padding:10px!important; }
+.padding-15 { padding:15px!important; }
+.padding-20 { padding:20px!important; }
+.padding-25 { padding:25px!important; }
+
+.margin-5 { margin:5px; }
+.margin-10 { margin:10px; }
+.margin-15 { margin:15px; }
+.margin-20 { margin:20px; }
+
+.radius-over-0:hover { border-radius:0px!important; }
+.radius-over-5:hover { border-radius:5px!important; }
+.radius-over-10:hover { border-radius:10px!important; }
+.radius-over-15:hover { border-radius:15px!important; }
+.radius-over-20:hover { border-radius:20px!important; }
+.radius-over-25:hover { border-radius:25px!important; }
+.ellipse-over:hover { border-radius:50%!important; }
+
+@include generic-shadow( 5 );
+
+
+
+/* ----------------------------------[ CENTERING ]-------------------------------------- */
+
+.align-frame { position:relative; overflow:hidden; } /* This class is added to the parent of whatever object you wish to center */
+.align-center, 
+.align-center-x, 
+.align-center-y {
+	position: absolute;
+	width:auto;
+	height:auto;
+}
+.align-center-x { left:50%; transform: translateX(-50%)!important; }
+.align-center-y { top:50%; transform: translateY(-50%)!important; }
+.align-center { left: 50%; top:50%; transform: translate(-50%,-50%)!important; }
+
+.center-text {
+	text-align:center!important;
+}
+
+.pivot-center { transform: translate(-50%,-50%); }
+.pivot-center-x { transform: translateX(-50%); }
+.pivot-center-y { transform: translateY(-50%); }
+.pivot-center-right { transform: translate(-100%,-50%); }
+.pivot-top-right { transform: translate(-100%,0); }
+.pivot-bottom-right { transform: translate(-100%,-100%); }
+.pivot-center-bottom { transform: translate(-50%,-100%); }
+.pivot-center-top { transform: translate(-50%,0); }
+
+
+@mixin define-screen-clamps( $pre , $map ) {
+
+	@each $key,$value in $map {
+
+		&.#{$pre}-#{$key} {
+			max-width: $value;
+		}
+
+	}
+
+}
+
+.container {
+	padding: 10px;
+	border:solid 1px #EEE;
+	&.clamp { 
+		 
+		&.center { margin:0pt auto; } 
+		@include define-screen-clamps( "s" , $screens );
+
+	}
+}
+
+.fullscreen {
+			
+	position:relative;
+	width:100vw;
+	height:100vh;
+	overflow:hidden;
+	
+}
+
+.overlay {
+	width:100vw;
+	height:100vh;
+	background:rgba(0,0,0,0.8);
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:9999;
+}
+
+.quote {
+	
+	padding: 15px;
+	border-left: 5px solid #29a9dc;
+	color: #7f8d95;
+	font-weight: 300;
+	line-height: 150%;
+	background: #1a1d23;
+	font-size: 90%;
+}
+ 
+.divider {
+	font-size:0px;
+	height:1px;
+	background: #191b21;
+	border-bottom: solid 1px #333743;
+	margin: 10px 0px;
+}
+
+@media all and (min-width: $screen-width-small) {
+
+	.s-only {display:none;}
+
+}
+
+@media all and (max-width: $screen-width-small) {
+	 
+	.hide-s { display: none; }
+	.lg-only { display:none; }
+	.md-only { display:none; }
+	 
+	.text-center-s {
+		text-align:center;
+	}
+
+}

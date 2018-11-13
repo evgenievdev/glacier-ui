@@ -1,0 +1,74 @@
+// ------------------------------------------------------------------------------------------------------- */
+//											   Variables												   */
+// ------------------------------------------------------------------------------------------------------- */
+ 	
+ 	// Root class name
+	$prefix: "glacier";
+
+	// Responsive
+	$screen-width-tiny: 320px;
+	$screen-width-small: 640px;
+	$screen-width-medium: 960px;
+	$screen-width-large: 1280px;
+	$screen-width-largest: 1440px;
+
+	// Display sizes (width)
+	$screens: (
+		"tiny": 320px,
+		"small": 640px,
+		"medium": 960px,
+		"large": 1280px,
+		"largest": 1980px
+	);
+
+	// Flex grid	 
+	$grid-columns: 20;							// The number of equally sized column classes in a grid row (e.g. .grid .row .col-10 is equal to a 50% wide column)
+	$grid-column-pixel-interval: 50;			// Horizontal grid column width
+	$grid-vertical-rows: 10;					// Number of defined classes for vertical grid rows
+	$grid-vertical-row-pixel-interval: 20;		// Vertical grid row height
+
+	// Layering system
+	$flow-base-layer-index: 10000;
+	$flow-layers: 5;
+ 
+
+	// Buttons
+	
+	// Messages
+	$messages:(
+		"warning":#e27838,
+		"info": #1cc5cf,
+		"error": #cf3030,
+		"ok": #30cf77
+	);
+
+
+	// Color palette
+	$palette-darken-classes: 4;
+	$palette-lighten-classes: 4;
+
+	$palette-darken-maximum: 0.4;
+	$palette-lighten-maximum: 0.4;
+
+	$palette-color-selector: "hue";
+	$palette-color-hover-selector: "over";
+	$palette-color-active-selector: "click";
+
+	$palette-text-selector: "txt";
+	$palette-text-hover-selector: "over";
+	$palette-text-active-selector: "click";
+
+	$palette-darken-selector: "dim";
+	$palette-lighten-selector: "undim";
+
+	$color-palette: (
+		"white": #ffffff,
+		"black": #000000,
+		"grey": rgb(128,128,128),
+		"blue": #3257ef,
+		"red": #ef3232,
+		"green": #32ef7d,
+		"aqua": #32efd8,
+		"purple": #9332ef,
+		"orange": #ef5432
+	);

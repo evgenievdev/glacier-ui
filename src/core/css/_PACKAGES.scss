@@ -1,0 +1,36 @@
+//------------------------------------------------------------------------------------------------
+// 								Which packages to include in BUILD
+//------------------------------------------------------------------------------------------------
+	
+	// Packages will be compiled in the specified order here.
+	// If you wish to exclude a package from the building process, simply remove it from this file.
+ 
+	@import "elements/default";
+	@import "elements/generic";
+	@import "elements/grid";
+ 	@import "elements/flow";
+ 	@import "elements/forms";
+ 	@import "elements/navigations";
+ 	@import "elements/buttons";
+ 	@import "elements/messages";
+ 	@import "elements/spline";
+ 	@import "elements/palette"; 
+
+ 	// Import CSS for all elements (non-js)
+ 	@import "../../elements/cards";
+ 	@import "../../elements/posts";
+
+ 	// Import CSS for all standard modules
+
+ 	@import "../../modules/standard/accordion";
+ 	@import "../../modules/standard/carousel";
+ 	@import "../../modules/standard/context";
+ 	@import "../../modules/standard/dropdown";
+ 	@import "../../modules/standard/modal";
+ 	@import "../../modules/standard/navigation";
+ 	@import "../../modules/standard/pagination";
+ 	@import "../../modules/standard/progress";
+ 	@import "../../modules/standard/slider";
+ 	@import "../../modules/standard/tabs";
+ 	@import "../../modules/standard/toggle";
+ 	@import "../../modules/standard/tree";

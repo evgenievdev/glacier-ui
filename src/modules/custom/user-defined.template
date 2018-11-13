@@ -1,0 +1,37 @@
+(function( _core , utils , internal ){
+	
+	// The name for the module
+	var _modname = "user-defined";
+	
+	// -------------------------------------------------------------------------------------------------------------------
+	// Compiler processor
+	// -------------------------------------------------------------------------------------------------------------------
+	
+	_core.processors[_modname] = function( tagPrefix , tag , cssClass ) {
+		
+	};
+	
+	// -------------------------------------------------------------------------------------------------------------------
+	// Instance declaration with prototype methods 
+	// -------------------------------------------------------------------------------------------------------------------
+	
+	var instance = function( val ) {
+		this.value = val;
+	};
+	
+	Object.assign( instance.prototype , {
+		
+		set: function( v ) {
+			this.value = v;
+		}
+		
+	});
+	
+	// -------------------------------------------------------------------------------------------------------------------
+	// Export module / append to Glacier namespace 
+	// -------------------------------------------------------------------------------------------------------------------
+	// Module name , Reference to instance function , Name of HTML tag suffix (used by processor) , CSS Class (the identifier for this module for each instance)
+	internal.defineModule( _modname , instance , _modname , "."+_modname );
+	
+})( Glacier , Glacier.utils , Glacier.internal );
+

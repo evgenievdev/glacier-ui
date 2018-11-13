@@ -1,0 +1,21 @@
+
+.spline {
+
+	&.element{
+		position:absolute;
+		&.centered {
+			transform: translate(-50%,-50%);
+		}
+	}
+
+	.helper-line {
+		position:absolute;
+		font-size:0;
+		line-height:0;
+		border-top:solid 1px white;
+		height:0px;
+	}
+
+}
+ 
+ 

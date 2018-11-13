@@ -1,0 +1,87 @@
+// ------------------------------------------------------------------------------------------------------- */
+//											      Mixins												   */
+// ------------------------------------------------------------------------------------------------------- */
+
+	// Cross-browser transform mixin 
+	@mixin transform($property) {
+
+	  -webkit-transform: $property;
+	  -ms-transform: $property;
+	  transform: $property;
+
+	}
+
+	// Cross-browser opacity mixin 
+	@mixin opacity($value) {
+	  /* Hack for old IE versions */
+	  zoom: 1;
+	   /* IE 8 */
+	  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+clamp($value,0,1)*100+")";
+	  /* IE 5-7 */
+	  filter: alpha(opacity=clamp($value,0,1)*100);
+	  /* Netscape */
+	  -moz-opacity: clamp($value,0,1);
+	  /* Safari 1.x */
+	  -khtml-opacity: clamp($value,0,1);
+	  /* Good browsers */
+	  opacity: clamp($value,0,1);
+	}
+
+	// Center content (child element within parent element with relative position) 
+	@mixin center($horizontal: true, $vertical: true) {
+
+	  position: absolute;
+
+	  @if ($horizontal and $vertical) {
+
+	    top: 50%;
+	    left: 50%;
+	    @include transform( translate(-50%, -50%) );
+
+	  } @else if ($horizontal) {
+
+	    left: 50%;
+	    @include transform( translate(-50%, 0) );
+
+	  } @else if ($vertical) {
+
+	    top: 50%;
+	    @include transform( translate(0, -50%) );
+
+	  }
+
+	}
+
+	// Overlay spanning across the entire parent element
+	@mixin overlay($fixed: false) {
+
+		@if($fixed) {
+			position:fixed;
+		} @else {
+			position:absolute;
+		}
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+
+	}
+
+	// Box shadow effect from a single property
+	// @param {Number} $depth - depth level (between 1 and 5)
+	// @link http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
+	// @requires {function} top-shadow
+	// @requires {function} bottom-shadow
+	@mixin shadow($depth) {
+
+	  @if $depth < 1 {
+	    box-shadow: none;
+	  } @else if $depth > 5 {
+	    @warn "Invalid $depth `#{$depth}` for mixin `shadow`.";
+	  } @else {
+	    box-shadow: bottom-shadow($depth), top-shadow($depth);  
+	  }
+
+	}
+
+	 

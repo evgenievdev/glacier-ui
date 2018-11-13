@@ -1,0 +1,49 @@
+/* --------------------------------------------------- NAVIGATION ---------------------------------------------- */
+
+.sidenav {
+
+	background: #ffffff; 
+
+	ul {
+		
+		li { 
+			overflow: hidden;
+			white-space: nowrap; 
+			display:block; 
+			padding:15px 20px; 
+			border-bottom:solid 1px #EEE; 
+			cursor:pointer; 
+			font-size:14px; 
+			transition: 0.3s all;
+			position: relative;
+			border-radius:20px;
+		}
+
+		li:hover, li.active, li.active:hover { 
+			background:#1ab2af;
+			color:#FFF; 
+			padding-left:30px!important;
+		}
+
+		li:after {
+		  content: '';
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+		  width: 20px;
+		  height: 20px;
+		  background: rgba(255, 255, 255, .5);
+		  opacity: 0;
+		  border-radius: 100%;
+		  transform: scale(1, 1) translate(-50%);
+		  transform-origin: 50% 50%;
+		}
+
+		li:focus:not(:active)::after {
+		  animation: ripple 3s ease-out;
+		}
+
+	}
+
+}
+ 

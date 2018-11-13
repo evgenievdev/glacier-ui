@@ -1,0 +1,30 @@
+.pagination li {
+	list-style-type: none;
+	display: block;
+	float:left;
+	padding: 10px 15px;
+	margin: 2px;
+	transition: 0.4s all;
+	border-radius: 5px;
+	border:solid 1px #DDDDDD;
+}
+
+.pagination li:hover{
+	cursor: pointer;
+	background: #eee;
+	border-color: #ccc;
+	color: #000;
+}
+
+.pagination li.active {
+	background: #2f9dc9;
+	border-color: #2f9dc9;
+	color: #FFF;
+}
+
+.pagination li.disabled {
+	background: #f5f5f5;
+	border-color: #f1f1f1;
+	color: #999;
+	cursor: default;
+}

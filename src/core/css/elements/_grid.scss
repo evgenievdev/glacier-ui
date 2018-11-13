@@ -1,0 +1,119 @@
+/* Glacier Grid (Flex-box) */
+
+// A list of grid column classes (bootstrap style)
+@mixin grid-class-list( $name , $items , $pixel-interval ) {
+
+  @for $i from 1 through $items {
+
+      .#{ $name }.fixed-#{ $i } { 
+      	flex: 0 0 (($i/$items)*100)*1%;
+      }
+
+      .#{ $name }.fixed-#{ $i }-strips { 
+      	flex: 0 0 ($i*$pixel-interval)*1px;
+      }
+
+  }
+
+}
+
+@mixin display-flex {
+
+	-js-display: flex;
+	display:-ms-flexbox;
+	display:flex;
+	display: -webkit-flex; /* Safari */
+
+}
+
+@mixin flex-grow($val) {
+
+	flex-grow:$val;
+	-webkit-flex-grow:$val;
+	-ms-flex-positive: $val;
+
+}
+
+@mixin flex-classes($name) {
+
+	.#{$name} {
+
+		flex: 1; 
+		-ms-flex: 1 1 auto;
+		@include flex-grow(1);
+
+		&.custom {
+			@include flex-grow(0);		 
+		}
+
+		&.auto {
+			flex: 0 0 auto;
+			-ms-flex: 0 0 auto;
+		}
+
+		&.resize {
+			@include flex-grow(1);
+		    flex-shrink: 1;
+			flex-basis: auto;
+		    transition: flex-basis 2000ms ease-in-out;
+		}
+
+		&.resize.half { @include flex-grow(0.5); }
+		&.resize.quarter { @include flex-grow(0.25); }
+		&.resize.third { @include flex-grow(0.33); }
+		&.resize.x2 { @include flex-grow(2); }
+		&.resize.x3 { @include flex-grow(3); }
+		&.resize.x4 { @include flex-grow(4); }
+		&.resize.x5 { @include flex-grow(5); }
+
+	}
+
+	 
+
+}
+ 
+
+.grid {
+
+	.row {
+
+		@include display-flex;
+		flex-basis: auto;
+		flex-direction: row;
+ 
+		@include flex-classes("col");
+
+		@include grid-class-list( "col" , $grid-columns , $grid-column-pixel-interval );
+
+	}
+
+	 
+
+}
+ 
+
+.grid.vertical {
+
+	@include display-flex;
+	min-height: 100%;
+	flex-direction: column;
+ 
+	.row .expand {
+		width:100%;
+	}
+
+	@include flex-classes("row");
+
+	@include grid-class-list( "row" , $grid-vertical-rows , $grid-vertical-row-pixel-interval );
+
+}
+
+
+@media all and (max-width: $screen-width-small) {
+ 
+	.grid .row.stackable {
+		flex-direction: column;
+		@include flex-grow(1);
+	}
+ 
+}

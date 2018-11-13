@@ -1,0 +1,132 @@
+.dropdown {
+
+	position:relative;
+
+	.panel {
+
+		position:absolute;
+		top:100%;
+		left:0;
+		border-radius:5px;
+		border:solid 1px #7f8d95;
+		z-index: 1;
+		background:#FFF;
+
+		&.right {
+			top:0;
+			left:100%;
+		}
+
+		&.bottom {
+			top:100%;
+			left:0;
+		}
+
+		&.left {
+			left: inherit;
+			right: 100%;
+			top:0;
+		}
+
+		&.top {
+			left: 0;
+			top:inherit;
+			bottom:100%;
+		}
+
+		&.top-left {
+			left: inherit;
+			right: 100%;
+			top:inherit;
+			bottom:0;
+		}
+
+		&.top-right {
+			left: 100%;
+			right: inherit;
+			top:inherit;
+			bottom:0;
+		}
+
+		&.bottom-left {
+			left: inherit;
+			right: 0;
+			top:100%;
+			bottom:inherit;
+		}
+
+	}	
+
+}
+ 
+
+.dropdown .panel.horizontal, 
+.dropdown.horizontal {
+	display:inline-block;
+	white-space:nowrap;
+}
+.dropdown .panel.horizontal > a, 
+.dropdown.horizontal > a {
+	display:inline-block;
+}
+
+.dropdown .panel.vertical {
+	display:block;
+	white-space: nowrap;
+}
+.dropdown .panel.vertical > a {
+	display:block;
+}
+ 
+
+.dropdown .panel > a, 
+.dropdown > a {
+	color: #7f8d95;
+	font-size:13px;
+	padding: 12px 20px;
+	text-decoration: none;
+	transition:0.2s all;
+	border-radius:5px;
+	display:block;
+ 
+}
+
+.dropdown .panel a:hover {
+	background-color: #EEE;
+	color:#1d2026;
+}
+
+.dropdown .panel a.active {
+	background-color: #EEE;
+}
+ 
+.dropdown.no-js > .panel, 
+.dropdown.no-js > .panel.horizontal, 
+.dropdown.no-js > .horizontal, 
+.dropdown.no-js > .panel.vertical {
+	display:none;
+}
+
+.dropdown.no-js > a .open-only, .dropdown.no-js:hover > a .closed-only,
+.dropdown.no-js > button .open-only, .dropdown.no-js:hover > button .closed-only
+{
+	display:none;
+}
+.dropdown.no-js:hover > a .open-only, .dropdown.no-js > a .closed-only,
+.dropdown.no-js:hover > button .open-only, .dropdown.no-js > button .closed-only
+{
+	display:inherit;
+}
+
+.dropdown.no-js:hover > .panel, 
+.dropdown.no-js:hover > .panel.vertical {
+	display:block;
+}
+
+.dropdown.no-js, 
+.dropdown.no-js:hover > .panel.horizontal, 
+.dropdown.no-js:hover > .horizontal, 
+.dropdown > .panel.horizontal > a, 
+.dropdown.no-js:hover > .horizontal > a {
+	display:inline-block;
+}

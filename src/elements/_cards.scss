@@ -1,0 +1,67 @@
+.cards.inline .card {
+	display:inline-block;
+}
+.cards.fluid .card {
+	width:100%;
+}
+.cards .card {
+	background:#FFF;
+	margin:15px;
+	width:500px;
+}
+.cards .card .content {
+	padding: 20px;
+	line-height:25px;
+	font-size:14px;
+}
+.cards .card .image {
+	width:100%;
+	height:300px;
+	position:relative;
+}
+.cards .card .image .overlay {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.8);
+	transition:0.3s all;
+	display:none;
+}
+.cards .card .image .overlay.light {
+	background:rgba(255,255,255,0.8);
+}
+.cards .card .image:hover .overlay{
+	display:block;
+	-webkit-animation: fadeIn 0.3s;
+		animation: fadeIn 0.3s;
+}
+.cards .card .image img {
+	width:100%;
+	height:100%;
+}
+
+.cards .card .content .title {
+	margin-bottom:10px;
+	padding-bottom:10px;
+	border-bottom:solid 1px #DDD;
+}
+
+.cards .card .content .footer {
+	margin-top:10px;
+	padding-top:10px;
+	border-top:solid 1px #DDD;
+	font-size:11.5px;
+	font-style:italic;
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}

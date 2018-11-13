@@ -1,0 +1,61 @@
+/* Color palette */
+
+@mixin palette-apply( $color , $text: false ) {
+	
+	@if( $text ) {
+		color: $color!important;
+	} @else {
+		background: $color!important;
+		border-color: $color!important;
+	}
+
+}
+
+// Create a list of classes for background and text colors based on the color palette map defined in variables
+// darker and lighter define how many levels of darkening and lightening per color element there will be
+// darkest and lightest defined the maximum percentage of darkening and lightening (expressed as a proportion 0.0-1.0) 
+@mixin palette-class-list( $d , $hover , $active, $darken , $lighten , $text , $darker:0 , $darkest: 0.5 , $lighter: 0 , $lightest: 0.5 ) {
+
+	@each $name, $value in $color-palette {
+
+      .#{ $d }-#{ $name }, 
+      .#{ $d }-#{ $hover }-#{ $name }:not(:active):hover,
+      .#{ $d }-#{ $active }-#{ $name }:active:focus { 
+
+      	@include palette-apply( $value , $text );
+
+      }
+ 
+      @if( $darker > 0 and $name != "white" and $name != "black" ) {
+	      @for $i from 1 through $darker {
+
+	      	 .#{ $d }-#{ $name }.#{ $darken }-#{ $i }, 
+	      	 .#{ $d }-#{ $hover }-#{ $name }.#{ $darken }-#{ $hover }-#{ $i }:hover
+	      	  {
+
+	      	 	@include palette-apply( darken( $value , (($i / $darker)*$darkest*100)*1% ) , $text );
+
+	      	 }
+	      }
+	  }
+
+	  @if( $lighter > 0  and $name != "white" and $name != "black"  ) {
+	      @for $i from 1 through $lighter {
+
+	      	 .#{ $d }-#{ $name }.#{ $lighten }-#{ $i },
+	      	 .#{ $d }-#{ $hover }-#{ $name }.#{ $lighten }-#{ $hover }-#{ $i }:hover
+	      	 {
+
+	      	 	@include palette-apply( lighten( $value , (($i / $lighter)*$lightest*100)*1% ) , $text );
+
+	      	 }
+
+	      }
+	  }
+
+  }
+
+} 
+
+@include palette-class-list( $palette-color-selector , $palette-color-hover-selector , $palette-color-active-selector , $palette-darken-selector , $palette-lighten-selector , false , $palette-darken-classes , $palette-darken-maximum , $palette-lighten-classes , $palette-lighten-maximum );
+@include palette-class-list( $palette-text-selector , $palette-text-hover-selector , $palette-text-active-selector , $palette-darken-selector , $palette-lighten-selector , true , $palette-darken-classes , $palette-darken-maximum , $palette-lighten-classes , $palette-lighten-maximum );

@@ -1,0 +1,107 @@
+/* ------------------------------------------- DEFAULT HTML TAGS ----------------------------------------- */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    transition: 0.3s all;
+}
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+tr:hover {
+	background-color:#1ab2af;
+	color:#FFF;
+	cursor:pointer;
+}
+
+blockquote {
+  font-size: 1.4em;
+  margin:20px auto;
+  font-family: 'Open Sans';
+  font-style:italic;
+  padding:1.2em 30px 1.2em 75px;
+  border-left:8px solid #78C0A8 ;
+  line-height:1.6;
+  position: relative;
+  background:#f1f1f1;
+}
+
+blockquote::before {
+  font-family: Arial;
+  content: "\201C";
+  color:#78C0A8;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
+}
+
+blockquote::after{
+  content: '';
+}
+
+blockquote .author {
+  display:block;
+  color:#333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top:1em;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+	padding: 10px 0px;
+}
+
+h1{
+	font-size:250%;
+}
+h2{
+	font-size:225%;
+}
+h3{
+	font-size:200%;
+}
+h4{
+	font-size:175%;
+}
+h5{
+	font-size:150%;
+}
+h6{
+	font-size:125%;
+}
+ 
+a {
+	color: #29a9dc;
+}
+a:hover {
+	color: #29a9dc;
+}
+ 
+li {
+	list-style-type:none;
+}
+
+hr {
+	border: none;
+  height: 1px;
+  color: #EEE; /* old IE */
+  background-color: #EEE; /* Modern Browsers */
+}
+
+code {
+  padding:15px;
+  background:#f1f1f1;
+  font-family: Arial;
+  letter-spacing: 0.5px;
+  font-size:125%;
+  color:#666;
+  font-weight:600;
+}

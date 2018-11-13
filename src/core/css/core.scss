@@ -1,0 +1,38 @@
+/*
+	@package: Glacier-UI
+	@description:  
+	@author: I.E.Liksov
+	@version: 0.1
+*/
+
+	// Core variables, functions and mixins
+	@import "variables";
+	@import "functions";
+	@import "mixins";
+
+	// Import CSS Reset v2
+	@import "reset";
+	// Import CSS normalizer v8.0.0
+	@import "normalize";
+ 	 
+// Core Glacier class
+.#{ $prefix } {
+
+	// Import all defined packages for compilation
+	@import "PACKAGES";
+ 
+
+}
+
+/* ------------------------------------------------------------------------------------------------------ */
+/*  																									  */
+/* ------------------------------------------------------------------------------------------------------ */
+ 
+  
+ 
+
+ 
+
+ 
+
+  

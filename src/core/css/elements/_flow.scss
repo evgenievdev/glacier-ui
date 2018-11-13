@@ -1,0 +1,44 @@
+/* Flow layering system */
+
+// A list of layers 
+@mixin flow-layers-list {
+
+  &.base {
+  	z-index: $flow-base-layer-index;
+  }
+
+  @for $i from 1 through $flow-layers {
+
+      &.n-#{ $i } { 
+      	z-index: $flow-base-layer-index+$i;
+      }
+
+  }
+
+}
+
+ 
+.flow {
+
+	position:relative;
+	overflow: hidden;
+
+	.layer {
+		
+		position:absolute;
+
+		@include flow-layers-list;
+
+	}
+	
+	 
+
+	.overlay {
+		position:absolute;
+		z-index: 9999;
+		width: 100%;
+		height: 100%;
+		background:rgba(0,0,0,0.8);
+	}
+
+}

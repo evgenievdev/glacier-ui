@@ -1,0 +1,166 @@
+/* Buttons */
+
+.button {
+	
+	padding: 15px 20px;
+	border-radius: 5px;
+	border: solid 1px #DDD;
+	background: transparent;
+	outline: none;
+	color: #555;
+	transition: 0.2s all;
+	cursor: pointer;
+	margin: 2px;
+	text-align:center;
+ 
+
+	// Important for ripple
+	&.ripple { 
+		position: relative;
+		overflow: hidden;
+
+		&:after {
+		  content: '';
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+		  width: 10px;
+		  height: 10px;
+		  background: rgba(255, 255, 255, .5);
+		  opacity: 0;
+		  border-radius: 100%;
+		  transform: scale(1, 1) translate(-50%);
+		  transform-origin: 50% 50%;
+		}
+
+		&:focus:not(:active)::after {
+		  animation: ripple 1s ease-out;
+		}
+
+	}
+ 
+	&:hover {
+		border-color:#999; 
+		color:#222;
+	}
+
+	&.active {
+		background:#fff;
+		color:#1d2026;
+	}
+
+	&.basic {
+
+		background:#f1f1f1;
+		border-width:0;
+
+		&:hover {
+			background:#DDD;
+		} 
+
+	} 
+
+	&.dark {
+		background:#333;
+		color:#fff;
+		&:hover {
+			background:#222;
+		}
+	}
+
+	&.light {
+		background:#FFF;
+		color:#222;
+		&:hover {
+			background:#11ddc4;
+			color:#FFF;
+		}
+	}
+
+	 
+
+	&.accept {
+
+		background:transparent;
+		color:#7dcb39;
+		border-color:#7dcb39;
+		border-width:1px;
+
+		&:hover {
+			background:#67a531;
+			color:#ffffff;
+			border-color:#7dcb39;
+		} 
+
+	} 
+	 
+
+	&.cancel {
+
+		background:transparent;
+		color:#ea3535;
+		border-color:#ea3535;
+		border-width:1px;
+
+		&:hover {
+			background:#cb3939;
+			color:#ffffff;
+			border-color:#ea3535;
+		}
+
+	} 
+	 
+
+	&.info {
+
+		background:transparent;
+		color:#29a9dc;
+		border-color:#29a9dc;
+		border-width:1px;
+
+		&:hover {
+			background:#2f9dc9;
+			color:#ffffff;
+			border-color:#29a9dc;
+		}
+
+	} 
+	 
+
+	&.glass-white  {
+
+		background:rgba(255,255,255,0.05);
+		color:rgba(255,255,255,0.8);
+		border-color:rgba(255,255,255,0.6);
+		border-width:1px;
+
+		&:hover {
+			color:#ffffff;
+			border-color:#FFFFFF;
+		}
+
+	} 
+ 
+
+	 
+
+	 
+
+}
+
+ 
+
+@keyframes ripple {
+  0% {
+	transform: scale(0, 0);
+	opacity: 1;
+  }
+  20% {
+	transform: scale(25, 25);
+	opacity: 1;
+  }
+  100% {
+	opacity: 0;
+	transform: scale(40, 40);
+  }
+}

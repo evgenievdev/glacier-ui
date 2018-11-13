@@ -1,0 +1,25 @@
+.accordion {
+
+	.item {
+
+		.link {
+			padding: 10px;
+			background: #42cef4;
+			color: #FFF;
+			margin-bottom: 1px;
+
+			.toggle {
+				cursor:pointer;
+				font-weight:bold;
+			}
+		}
+
+		.content {
+			padding: 10px;
+			white-space: nowrap;
+		}
+
+	}
+
+}
+ 

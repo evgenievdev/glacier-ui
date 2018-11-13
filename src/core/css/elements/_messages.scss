@@ -1,0 +1,42 @@
+ 
+@mixin msg-subclasses( $map ) {
+
+	@each $name,$val in $map {
+
+		&.#{$name} {
+			border-color: $val;
+			background: lighten($val,40%);
+		}
+
+	}
+
+}
+
+.msg {
+	
+  padding:15px;
+  background:#f9f9f9;
+  border:solid 1px #EEE;
+  border-radius:10px;
+  border-left-width:6px;
+  margin:10px 0px;
+  font-size:15px;
+  line-height:22px;
+  overflow:hidden;
+
+  &:after{
+  	  content: "";
+	  display: table;
+	  clear: both;
+  }
+
+  .icon {
+  	font-size:24px;
+  	&.left { padding-right:15px; }
+  	&.right { float:right;padding-left:15px; }
+  }
+
+  @include msg-subclasses( $messages );
+ 
+}
+ 

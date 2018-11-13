@@ -1,0 +1,35 @@
+.tabs .links {
+	border-bottom: solid 1px #DDD;
+}
+
+.tabs .links li {
+	display: inline-block;
+	padding: 15px 20px;
+	cursor: pointer;
+	transition: 0.25s all;
+}
+
+/*
+.tabs .links li:hover {
+	background: #2f9dc9;
+	color:#FFF;
+}
+*/
+
+.tabs .links li.active, .tabs .links li.active:hover {
+	background:#2f9dc9;
+	color:#fff;
+}
+
+.tabs .links li.disabled, .tabs .links li.disabled:hover {
+	background:#f1f1f1;
+	color:#252831;
+}
+ 
+@media all and (max-width: 640px) {
+	 
+	.tabs .links li {
+		display:block;
+	}
+
+}

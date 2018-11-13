@@ -1,0 +1,19 @@
+.progress {
+	
+}
+
+.progress .bar {
+	width: 40px;
+	height: 40px;
+	position:relative;
+	margin: 5px;
+	background: #bec5d1; 
+	float: left;
+}
+
+.progress .bar .inner {
+	position:absolute;
+	width:0%;
+	height:0%;
+	background: #6ac43c;
+}
