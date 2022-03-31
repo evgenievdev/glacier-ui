@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> Glacier-UI / Core Elements </title>
+
+	<!-- Load Glacier-UI -->
+	<link rel="stylesheet" href="../../dist/glacier.css"> 
+	<script type="text/javascript" src="../../dist/glacier.js"></script>
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:14px;
+			color:#333;
+			font-weight:300;
+		}
+	 
+	</style>
+
+</head>
+<body class="glacier"> 
+
+	<div class="container clamp s-large center ">
+		<h2> Messages </h2>
+		<hr/>
+		
+		<div class="msg">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare ante et mattis ultricies. Curabitur vel elementum massa. Morbi quis risus vel ipsum maximus posuere dictum et ligula. 
+		</div>
+		<div class="msg" id="closeable">
+			<i class="fa fa-info icon left"></i>
+			<a href="#" class="close-message txt-black txt-over-red"><i class="fa fa-close icon right"></i></a>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare ante et mattis ultricies. Curabitur vel elementum massa. Morbi quis risus vel ipsum maximus posuere dictum et ligula. 
+		</div>
+		<div class="msg info"> 
+			<i class="fa fa-info icon left"></i>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare ante et mattis ultricies. Curabitur vel elementum massa. Morbi quis risus vel ipsum maximus posuere dictum et ligula. 
+		</div>
+		<div class="msg warning"> 
+			<i class="fa fa-warning icon left"></i>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare ante et mattis ultricies. Curabitur vel elementum massa. Morbi quis risus vel ipsum maximus posuere dictum et ligula. 
+		</div>
+		<div class="msg error"> 
+			<i class="fa fa-ban icon left"></i>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare ante et mattis ultricies. Curabitur vel elementum massa. Morbi quis risus vel ipsum maximus posuere dictum et ligula. 
+		</div>
+		<div class="msg ok"> 
+			<i class="fa fa-check icon left"></i>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare ante et mattis ultricies. Curabitur vel elementum massa. Morbi quis risus vel ipsum maximus posuere dictum et ligula. 
+		</div>
+
+	</div>
+
+	<script>
+		
+		var _modname = "message";
+
+		_core.processors[_modname] = function( prefixTag , tag , cssClass ) {
+
+		};
+
+		var instance = function( elem , opt ) {
+			opt = opt || {};
+			this.cfg = this.defaultSettings();
+			this.element = typeof elem == 'string' ? $(elem) : elem;
+		};
+
+		Object.assign( instance.prototype , {
+
+			defaultSettings: function() {
+				return {
+					animation: true,
+					duration: 400,
+					sequence: "slideUp",
+					destroy: true
+				};
+			},
+
+			close: function() {
+
+				this.element.animate({
+			       	height: "0px"
+			    }, 
+			    2000,
+			    function(){
+			    	this.element.hide();
+			    }.bind(this)
+			    );
+			
+			},
+
+			destroy: function() {
+				this.element.remove();
+				this.element = false;
+			}
+
+		});
+
+ 
+
+	</script>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 {
   "name": "glacier-ui",
-  "version": "0.0.1",
+  "version": "0.0.11",
+  "title": "Glacier-UI",
   "description": "Lightweight, modular, responsive, front-end framework",
   "main": "index.js",
   "directories": {
@@ -23,7 +24,11 @@
     "javascript"
   ],
   "author": "I.E.Liksov",
-  "license": "ISC",
+  "license": "MIT",
+  "homepage": "https://www.glacier-ui.com",
+  "repository": {
+      "url": "https://github.com/evgenievdev/glacier-ui.git"
+  },
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-clean-css": "^3.10.0",

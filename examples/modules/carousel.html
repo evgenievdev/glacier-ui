@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+  
+	<title> Carousel </title>
+
+	<!-- Load Glacier-UI -->
+	<script src="../../dist/glacier.min.js"></script>
+	<link rel="stylesheet" href="../../dist/glacier.min.css">
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:14px;
+			color:#333;
+			font-weight:300;
+			background:#f1f1f1;
+		}
+		 
+		.box {
+			padding:20px 30px;
+			margin:20px 0px;
+			background:#fff;
+		}
+	</style>
+
+</head>
+<body class="glacier"> 
+
+<div style="display:table;margin:0pt auto;min-width:850px;">
+	
+	<br/>
+	<h1 class="no-margin">Carousel</h1>
+	<h6>Horizontal and vertical carousels with editable controls and mobile support.</h6>
+	<hr class="hue-grey undim-3"/>
+
+
+
+	<div class="box">
+		<h5>Fluid Carousel</h5><hr/>
+ 
+		<div class="carousel" id="carousel1">
+		
+			<div class="content no-select">
+		
+				<div class="item fluid" style="background:#d43944;">
+					<div class="align-center txt-center">
+						<h2>Kool & The Gang</h2>
+						<h6>Jungle Boogie</h6>
+						<br>
+						<button class="button glass-white"> <i class="fa fa-cog"></i>&nbsp; View</button>
+						<button class="button glass-white"> <i class="fa fa-cog"></i>&nbsp; Purchase</button>
+					</div>
+				</div>
+				<div class="item fluid" style="background:#35bdb2;">
+					<div class="align-center txt-center">
+						<h2>Item 2</h2>
+						<br>
+						<button class="button glass-white"> <i class="fa fa-cog"></i>&nbsp; View</button>
+						<button class="button glass-white"> <i class="fa fa-cog"></i>&nbsp; Download</button> 
+					</div>
+				</div>
+				<div class="item fluid" style="background:#a761c1;">
+					<div class="align-center txt-center">
+						<h2>Item 3</h2>
+						<br>
+						<button class="button glass-white"> <i class="fa fa-cog"></i>&nbsp; View</button>
+						<button class="button glass-white"> <i class="fa fa-cog"></i>&nbsp; Download</button>
+					</div>
+				</div>
+				<div class="item fluid" style="background:#ff893f;">
+					<div class="align-center txt-center">
+						<h2>Item 4</h2>
+						<br>
+						<button class="button glass-white"> <i class="fa fa-cog"></i>&nbsp; View</button>
+						<button class="button glass-white"> <i class="fa fa-cog"></i>&nbsp; Download</button>
+					</div>
+				</div>
+			
+			</div>
+			
+			<div class="absolute valign-center" style="left:10px;">
+				<button class="carousel-previous button glass-white"> &lt; </button>
+			</div>
+			<div class="absolute valign-center" style="right:10px;">
+				<button class="carousel-next button glass-white"> &gt; </button>
+			</div>
+
+			<div class="absolute halign-center links" style="bottom:20px;"></div>
+			
+		</div>
+
+
+
+
+
+ 
+		<br/>
+		<h6> Controls </h6>
+		
+		<button class="button basic" onclick="demo.first();"> First </button>
+		<button class="button basic" onclick="demo.previous();"> &lt; Previous </button>
+		<button class="button basic " onclick="play(this);"> Play </button>
+		<button class="button basic" onclick="demo.next();"> Next &gt;</button>
+		<button class="button basic" onclick="demo.last();"> Last </button>
+		 
+		<br>
+		<h6> Controls </h6>
+
+		<button class="button basic" onclick="demo.hide_buttons();"> Hide Buttons </button>
+		<button class="button basic" onclick="demo.show_buttons();"> Show Buttons </button>
+		
+		<button class="button basic" onclick="demo.hide_links();"> Hide Links </button>
+		<button class="button basic" onclick="demo.show_links();"> Show Links </button>
+		
+		<br>
+		<h6> Direction </h6>
+ 
+		<button class="button basic" onclick="demo.set_horizontal();"> Horizontal (default) </button>
+		<button class="button basic" onclick="demo.set_vertical();"> Vertical </button>
+		
+		<br/>
+		<h6> Responsiveness </h6>
+		
+		<button class="button basic" onclick="swipeable( this );"> Swipeable </button>
+		<button class="button basic" onclick="demo.swipe_min_distance( 200 );"> Min. Distance 200px </button>
+		<button class="button basic" onclick="demo.swipe_min_distance( 400 );"> Min. Distance 400px </button>
+		<button class="button basic" onclick="demo.swipe_min_distance( 800 );"> Min. Distance 800px </button>
+		
+		<br/>
+
+	</div>
+
+
+	<div class="box">
+		
+		<h5>Mobile Adaptation</h5>
+		(fluid , no controls , swipe only (left/right) , no reverting)
+		<hr/>
+		  
+		<gl-carousel auto-play="false" interval="2000" width="100%" height="300" animation="500" revert="false" swipe="true" swipe-minimum="200">
+		
+			<div class="carousel">
+			
+				<div class="content no-select">
+			
+					<div class="item fluid hue-orange undim-1">
+						<div class="align-center txt-center">
+							<h2>Kool & The Gang</h2>
+							<h6>Jungle Boogie</h6>
+							<br>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; View</button>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; Purchase</button>
+						</div>
+					</div>
+					<div class="item fluid hue-aqua dim-2">
+						<div class="align-center txt-center">
+							<h2>Item 2</h2>
+							<br>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; View</button>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; Download</button> 
+						</div>
+					</div>
+					<div class="item fluid hue-purple undim-1">
+						<div class="align-center txt-center">
+							<h2>Item 3</h2>
+							<br>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; View</button>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; Download</button>
+						</div>
+					</div>
+				
+				</div>
+				 
+				
+			</div>
+
+		</gl-carousel>
+
+	</div>
+		
+	<div class="box">
+		
+		<h5>Vertical Carousel</h5>
+		(fluid, vertical, swipeable (up/down), animated, buttons, no links, revertable)
+		<hr/>
+	  
+		<gl-carousel auto-play="false" interval="2000" width="100%" height="500" animation="500" revert="true" swipe="true" swipe-minimum="200" vertical="true">
+		
+			<div class="carousel vertical">
+			
+				<div class="content no-select">
+			
+					<div class="item fluid" style="background:#d43944;">
+						<div class="align-center txt-center">
+							<h2>Kool & The Gang</h2>
+							<h6>Jungle Boogie</h6>
+							<br>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; View</button>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; Purchase</button>
+						</div>
+					</div>
+					<div class="item fluid" style="background:#35bdb2;">
+						<div class="align-center txt-center">
+							<h2>Item 2</h2>
+							<br>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; View</button>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; Download</button> 
+						</div>
+					</div>
+					<div class="item fluid" style="background:#a761c1;">
+						<div class="align-center txt-center">
+							<h2>Item 3</h2>
+							<br>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; View</button>
+							<button class="button glass-white radius-0 radius-over-10"> <i class="fa fa-cog"></i>&nbsp; Download</button>
+						</div>
+					</div>
+				
+				</div>
+				
+				<div class="absolute halign-center" style="top:10px;">
+					<button class="carousel-previous button glass-white"> &#708; </button>
+				</div>
+				<div class="absolute halign-center" style="bottom:10px;">
+					<button class="carousel-next button glass-white"> &#709; </button>
+				</div>
+		 
+				
+			</div>
+
+		</gl-carousel>
+
+	</div>
+
+
+
+	<script>
+        
+		var carousel1 = new Glacier.modules.carousel("#carousel1",{
+			width: "100%",
+			height: 400,
+			autoplay: false,
+			interval: 1000,
+			animation: 500,
+			revert: true,
+			swipe: true,
+			swipemin: 100,
+			vertical: false
+		});
+
+		// Universal compiler (loads all modules for you that are wrapped in the necessary glacier tags) 
+		Glacier.compiler.run();
+	 
+		function play( el ) {			
+			if( el.innerText !== "Pause" ) {
+				el.innerText = "Pause";	
+				carousel1.play();		
+			} else {		
+				el.innerText = "Play";				
+				carousel1.pause();			
+			}		
+		};
+		
+		function swipeable( el ) {			
+			if( el.innerText !== "No-Swipe" ) {
+				el.innerText = "No-Swipe";			
+				carousel1.swipable( false );		
+			} else {			
+				el.innerText = "Swipeable";				
+				carousel1.swipable( true );				
+			}		
+		};
+
+	</script>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> Glacier-UI / Core Elements </title>
+
+	<!-- Load Glacier-UI -->
+	<link rel="stylesheet" href="../../dist/glacier.css"> 
+	<script type="text/javascript" src="../../dist/glacier.js"></script>
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:13.5px;
+			color:#333;
+		}
+	 	.box {
+			padding:20px 30px;
+			margin:20px 0px;
+			background:#fff;
+		}
+	</style>
+
+</head>
+<body class="glacier"> 
+
+	<div class="container clamp s-large center" id="responsive">
+		<h5> Responsive </h5>
+		<hr/>
+		<button class="button basic" id="insert"> Insert (Dynamic test) </button><br/><br/>
+		<div class="container" gl-responsive="s,m" > Content visible on Small and Medium screens </div>
+		<div class="container" gl-responsive=">=m" gl-static="true"> Content visible on Medium screens or larger (STATIC) </div>
+	</div>
+
+	<script>
+
+		var Responsive = new Glacier.modules.responsive({
+			target: $('body'),
+			screens: {
+				'xs': 320,
+				's': 640,
+				'm': 960,
+				'l': 1280,
+				'xl': -1 				// -1 means infinity in this context
+			},
+			options: {
+				toggleContent: true,	// Show/Hide the elements based on their responsive properties. Set to false if you want the module to work as a sensor.
+				dynamic: true			// Set to true if you want a DOM observer to look for insertions/removals of elements within the target and update the module.
+			},
+			events: {
+				onScreen: {
+					'm': function( screen , all , current ) {
+						console.log("Screen ["+screen+"] has ["+current.length+"] elements attached to it.");
+					}
+				},
+				onResizeStart: function() { console.log('Element is resizing (start)'); },
+				onResizeEnd: function() { console.log('Element is resizing (end)'); },
+				onShow: function( all , current , screen ) { console.log('Element is being shown on ['+screen+'].'); },
+				onHide: function( all , current , screen ) { console.log('Element is being hidden'); }
+			}
+		});
+
+		Responsive.run();
+
+		// For demonstration purposes only
+		var $responsive = $('#responsive');
+		var $insert = $('#insert');
+		$insert.click(function(){
+			$responsive.append('<div class="container" gl-responsive=">=m"> Content visible on Medium screens or larger (DYNAMIC) </div>');
+		});
+		 
+ 
+
+	</script>
+ 
+
+</body>
+</html>

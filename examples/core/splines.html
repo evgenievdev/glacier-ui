@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+  
+	<title> Splines </title>
+
+	<!-- Load Glacier-UI -->
+	<script src="../../dist/glacier.min.js"></script>
+	<link rel="stylesheet" href="../../dist/glacier.min.css">
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:14px;
+			color:#333;
+			font-weight:300;
+			background:#f1f1f1;
+		}
+		 
+		.box {
+			padding:20px 30px;
+			margin:20px 0px;
+			background:#fff;
+		}
+	</style>
+
+</head>
+<body class="glacier"> 
+
+<div style="display:table;margin:0pt auto;min-width:850px;">
+	
+	<br/>
+	<h1 class="no-margin">Splines</h1>
+	<h6>Horizontal and vertical carousels with editable controls and mobile support.</h6>
+	<hr class="hue-grey undim-3"/>
+
+
+
+	<div class="box">
+		<h5>Fluid Carousel</h5><hr/>
+ 
+		<div id="spline-container1" style=" height:500px; ">
+			<h4>Elements moving along a Cardinal Spline with variable speed.</h4>
+	 		<div class="spline element centered" id="el1" style="width:100px;height:50px;border:solid 0px white;text-align:center;border-radius:5px;">
+				<img src="../_images/vehicle_a.png" width="100%"/>
+			</div>
+
+			<div class="spline element centered" id="el2" style="width:100px;height:50px;border:solid 0px white;text-align:center;border-radius:5px;">
+				<img src="../_images/vehicle_b.png" width="100%"/>
+			</div>
+
+			<div class="spline element centered" id="el3" style="width:100px;height:50px;border:solid 0px white;text-align:center;border-radius:5px;">
+				<img src="../_images/vehicle_c.png" width="100%"/>
+			</div>
+
+			<div class="spline element centered" id="el4" style="width:100px;height:50px;border:solid 0px white;text-align:center;border-radius:5px;">
+				<img src="../_images/vehicle_d.png" width="100%"/>
+			</div>
+	 
+		</div>  
+
+	</div>
+
+
+	<div class="box">
+
+		<div id="spline-container2" style=" height:500px;background:#b73a31; padding:20px;">
+			<h4>Conveyor Menu using Glacier Buttons</h4>
+ 	 		<div id="b1" class="spline element centered">
+				<button class="button glass-white ellipse radius-over-10" style="width:100px;height:100px;line-height:100%;"> 
+					<i class="fa fa-cog"></i>&nbsp; Item 1
+				</button>
+			</div>
+	 		
+	 		<div id="b2" class="spline element centered">
+				<button class="button glass-white ellipse radius-over-10" style="width:100px;height:100px;line-height:100%;"> 
+					<i class="fa fa-cog"></i>&nbsp; Item 2
+				</button>
+			</div>
+
+			<div id="b3" class="spline element centered">
+				<button class="button glass-white ellipse radius-over-10" style="width:100px;height:100px;line-height:100%;"> 
+					<i class="fa fa-cog"></i>&nbsp; Item 3
+				</button>
+			</div>
+
+			<div id="b4" class="spline element centered">
+				<button class="button glass-white ellipse radius-over-10" style="width:100px;height:100px;line-height:100%;"> 
+					<i class="fa fa-cog"></i>&nbsp; Item 4
+				</button>
+			</div>
+
+			<div id="b5" class="spline element centered">
+				<button class="button glass-white ellipse radius-over-10" style="width:100px;height:100px;line-height:100%;"> 
+					<i class="fa fa-cog"></i>&nbsp; Item 5
+				</button>
+			</div>
+  
+		</div>
+
+	</div>
+
+
+	<div class="box">
+
+		<div id="spline-container3" style=" width:800px;height:300px;background:#324fb9;margin:20px;padding:20px;">
+
+			<h4>Interactive Timeline</h4>
+
+ 	 		<div id="step1" class="spline element centered">
+				<button class="button glass-white circle hover-radius-10" style="width:100px;height:100px;line-height:100%;"> 
+					<i class="fa fa-cog"></i>&nbsp; Item 1
+				</button>
+			</div>
+	 		
+		</div>
+
+	</div>
+ 
+
+
+	<script>
+        
+		 var ellipse = function( rx , ry , n , sx , sy ) {
+			sx = sx || 0;
+			sy = sy || 0;
+			var p = [];
+			var ai = (Math.PI*2) / (n-1);
+			for( var i = 0 ; i < n ; i++ ) {
+
+				p.push(
+					new Glacier.math.Vector2( Math.cos( ai*i )*rx +sx , Math.sin( ai*i )*ry +sy )
+				);
+
+			}
+			return p;
+		}
+
+		 
+
+		var ellipsePath = ellipse( 30 , 30 , 20 , 50 , 50 );
+
+		var spline1 = new Glacier.modules.spline( "#spline-container1" , {
+
+			points: ellipsePath,
+			fluid: true
+
+		} );
+
+		spline1.buildPathHelpers(40);
+
+		spline1.addElement({
+			name: "1st", 
+			id: "#el1", 
+			position: 0.0,
+			follow: true,
+			angleOffset: 0,
+			centered: true
+		});
+
+		spline1.addElement({
+			name: "2nd", 
+			id: "#el2", 
+			position: 0.2,
+			follow: true,
+			angleOffset: 0,
+			centered: true
+		});
+
+		spline1.addElement({
+			name: "3rd", 
+			id: "#el3", 
+			position: 0.4,
+			follow: true,
+			angleOffset: 150,
+			centered: true
+		});
+
+		spline1.addElement({
+			name: "4th", 
+			id: "#el4", 
+			position: 0.6,
+			follow: true,
+			angleOffset: 0,
+			centered: true
+		});
+
+		spline1.updateElements();
+
+
+		var sPts = [
+			new Glacier.math.Vector2( 50 , 200 ),
+			new Glacier.math.Vector2( 500 , 200 ),
+			new Glacier.math.Vector2( 500 , 400 ),
+			new Glacier.math.Vector2( 750 , 400 )
+		];
+		var menu = new Glacier.modules.spline( "#spline-container2" , {
+
+			points: sPts,
+			fluid: false
+
+		} );
+
+		menu.buildPathHelpers(30);
+
+		var mItems = menu.target.find(".spline.element");
+		mItems.each(function( i ){
+
+			var b = $(this);
+			var id = b.attr("id");
+
+			menu.addElement({
+				name: "button-"+id, 
+				id: "#"+id, 
+				position: (1.0/mItems.length) * i ,
+				follow: false,
+				angleOffset: 0,
+				centered: true
+			});
+
+		});
+ 
+		menu.updateElements();
+
+		var iPts = [
+			new Glacier.math.Vector2( 10 , 40 ),
+			new Glacier.math.Vector2( 90 , 40 ),
+			new Glacier.math.Vector2( 10 , 60 ),
+			new Glacier.math.Vector2( 90 , 60 )
+		];
+		var interactive = new Glacier.modules.spline( "#spline-container3" , {
+
+			points: iPts,
+			fluid: true
+
+		} );
+
+		interactive.buildPathHelpers(10);
+
+		interactive.addElement({
+			name: "stepButton", 
+			id: "#step1", 
+			position: 0.0 ,
+			follow: false,
+			angleOffset: 0,
+			centered: true,
+			events: {
+				click: function( e ) {
+
+					this.animateElement( e.name , 0.3 , 500 );
+					e.el.find("button").text("Step 2");
+
+				}
+			}
+		});
+
+		interactive.updateElements();
+
+		interactive.animateElement("stepButton",0.5,2000);
+
+		var i = 0.005;
+		var n = 0;
+		var ts = 0;
+		function update(){
+
+			requestAnimationFrame(update);
+
+			if( n > 200 ) { 
+				console.log("Position time : " + (ts/n).toFixed(5) +"ms.");
+				n = 0;
+				ts =0;
+			}
+ 		 
+			var t1 = performance.now();
+			spline1.moveElements( [i*0.7,i,-i*1.2,i] , true );
+			var t2 = performance.now() - t1;
+			ts += t2;
+			n++;
+
+			 menu.moveElements( 0.001 , true );
+
+			 
+
+		}
+
+		 update();
+
+	</script>
+
+</div>
+
+</body>
+</html>

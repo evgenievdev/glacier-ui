@@ -7,7 +7,7 @@
 	
 	function process_module( id ) {
 		
-		var modules = _core.moduleList();
+		var modules = internal.moduleList();
 		if( id < 0 && id >= modules.length ) { return false; }
 		var mod = modules[ id ];
 		// If this module doesn't have a processor method, exit
@@ -20,9 +20,9 @@
 	function compile(debug) {
 		
 		if( debug ) {
-		console.log("Glacier compiler - modules loaded:");
+			console.log("Glacier compiler - modules loaded:");
 		}
-
+		var modules = internal.moduleList();
 		var mod, instances, t0 , t1 , dt;
 		for( var i = 0 ; i < modules.length ; i++ ) {
 	
@@ -37,7 +37,7 @@
 			dt = t1 - t0;
 			
 			if( debug ) {
-			console.log('%c ' + mod.name + ": " + loaded[ mod.name ].length +" ("+dt.toFixed(4)+"ms)", 'background: hsl( '+360/modules.length * i+', 50% , 50%); color: #fff; padding:2px;');
+				console.log('%c ' + mod.name + ": " + loaded[ mod.name ].length +" ("+dt.toFixed(4)+"ms)", 'background: hsl( '+360/modules.length * i+', 50% , 50%); color: #fff; padding:2px;');
 			}
 
 		}	

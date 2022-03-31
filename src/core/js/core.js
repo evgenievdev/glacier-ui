@@ -39,6 +39,25 @@ var Glacier = (function() {
 					if( _moduleList[i].name === name ) { return true; }
 				}
 				return false;
+			},
+			// Extract the attributes and values of any element into a JSON object. By default "class" and "id" are ignored
+			attributes: function(el,prefix,ignore) {
+				var r = {};
+				if( typeof ignore !=='object' || !ignore.length ) {
+					ignore = ["class","id"];
+				}
+				el.each(function() {
+					$.each(this.attributes,function(i,a){
+						if( ignore.indexOf(a.name) >= 0 ) { return; }
+						if( typeof prefix == 'string' && a.name.split("-")[0].trim() !== prefix ) { return; }
+						var val = a.value;
+						if( val == "true" ) { val = true; }
+						else if( val == "false" ) { val = false; }
+						else if( !isNaN(val) ) { val =  Number(val); }
+		            	r[a.name] = val;
+		            });
+				});
+	            return r;
 			}
 		}
 	};

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+  
+	<title> Reveals </title>
+
+	<!-- Load Glacier-UI -->
+	<script src="../../dist/glacier.min.js"></script>
+	<link rel="stylesheet" href="../../dist/glacier.min.css">
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:14px;
+			color:#333;
+			font-weight:300;
+			background:#f1f1f1;
+		}
+	 
+		.basic {
+			background:#fff;width:350px;height:290px;float:left;margin:30px;
+		}
+
+	</style>
+
+</head>
+<body class="glacier"> 
+ 
+<div style="margin:0pt auto;max-width:1280px;">
+
+	<br/>
+	<h1 class="no-margin">Reveal</h1>
+	<h6>Hover/Tap any of the boxes to see a hidden container reveal itself</h6>
+	<hr class="hue-grey undim-3"/>
+
+	<div class="msg info">
+		<i class="fa fa-info icon left"></i>
+		This module is compatible with many other modules such as the Palette, Edgefolds, Grid and more. You can also mix-and-match generics.
+	</div>
+
+	<div class="reveal basic">
+		<div class="align-center txt-center">
+			<h3>Basic</h3>
+			<h6>Top</h6>
+		</div>
+		<div class="box from-top hue-grey undim-4">
+			<div class="padding-10">
+				This is a slide-down reveal content box
+			</div>
+		</div>
+	</div>
+
+	<div class="reveal basic">
+		<div class="align-center txt-center">
+			<h3>Basic</h3>
+			<h6>Bottom</h6>
+		</div>
+		<div class="box from-bottom hue-grey undim-4">
+			<div class="padding-10">
+				This is a slide-up reveal content box
+			</div>
+		</div>
+	</div>
+
+	<div class="reveal basic">
+		<div class="align-center txt-center">
+			<h3>Basic</h3>
+			<h6>Left</h6>
+		</div>
+		<div class="box from-left hue-grey undim-4">
+			<div class="padding-10">
+				This is a slide-left reveal content box
+			</div>
+		</div>
+	</div>
+
+	<div class="reveal basic">
+		<div class="align-center txt-center">
+			<h3>Basic</h3>
+			<h6>Right</h6>
+		</div>
+		<div class="box from-right hue-grey undim-4">
+			<div class="padding-10">
+				This is a slide-right reveal content box
+			</div>
+		</div>
+	</div>
+
+	<div class="reveal basic">
+		<div class="align-center txt-center">
+			<h3>Basic</h3>
+			<h6>Top & Bottom</h6>
+		</div>
+		<div class="box from-top hue-grey undim-4">
+			<div class="padding-10">
+				This is a slide-down reveal content box
+			</div>
+		</div>
+		<div class="box from-bottom hue-grey undim-4">
+			<div class="padding-10">
+				This is a slide-up reveal content box
+			</div>
+		</div>
+	</div>
+
+	<div class="reveal basic">
+		<div class="align-center txt-center">
+			<h3>Basic</h3>
+			<h6>Generics</h6>
+		</div>
+		<div class="box full from-right hue-purple">
+			<div class="align-center giant txt-white">
+				Big Reveal
+			</div>
+		</div>
+	</div>
+
+	<div class="reveal basic">
+		<div class="align-center txt-center">
+			<h3>Basic</h3>
+			<h6>Top / Fluid</h6>
+		</div>
+		<div class="box full from-top hue-grey undim-4">
+			<div class="padding-10">
+				This is a full-sized reveal content box
+			</div>
+		</div>
+	</div>
+
+	<div class="reveal basic">
+		<div class="align-center txt-center">
+			<h3>Basic</h3>
+			<h6>Top & Bottom / Halfs</h6>
+		</div>
+		<div class="box from-top hue-grey undim-4" style="height:50%;">
+			<div class="padding-10">
+				This is a slide-down reveal content box
+			</div>
+		</div>
+		<div class="box from-bottom hue-grey undim-4" style="height:50%;">
+			<div class="padding-10">
+				This is a slide-up reveal content box
+			</div>
+		</div>
+	</div>
+
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content reveal" style="height:250px;">
+			<div class="align-center txt-center">
+				<h3>Edgefolds</h3>
+				<h6>Top / Palette</h6>
+			</div>
+			<div class="box from-top hue-aqua dim-2 txt-white">
+				<div class="padding-10">
+					This is a slide-down reveal content box
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content reveal" style="height:250px;">
+			<div class="align-center txt-center">
+				<h3>Edgefolds</h3>
+				<h6>Bottom / Palette</h6>
+			</div>
+			<div class="box from-bottom hue-aqua dim-2 txt-white">
+				<div class="padding-10">
+					This is a slide-up reveal content box
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content reveal" style="height:250px;">
+			<div class="align-center txt-center">
+				<h3>Edgefolds</h3>
+				<h6>Bottom/Palette/Fluid</h6>
+			</div>
+			<div class="box from-bottom full hue-blue dim-2 txt-white">
+				<div class="padding-10">
+					This is a slide-up reveal content box expanding to the entire container
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content reveal" style="height:250px;">
+			<div class="align-center txt-center">
+				<h3>Edgefolds</h3>
+				<h6>Left/Palette/Fluid</h6>
+			</div>
+			<div class="box from-left full hue-red dim-2 txt-white">
+				<div class="padding-10">
+					This is a slide-left reveal content box expanding to the entire container
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content reveal" style="height:250px;">
+			<div class="align-center txt-center">
+				<h3>Edgefolds</h3>
+				<h6>Right/Palette/Fluid</h6>
+			</div>
+			<div class="box from-right full hue-orange dim-2 txt-white">
+				<div class="padding-10">
+					This is a slide-right reveal content box expanding to the entire container
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content reveal" style="height:250px;">
+			<div class="align-center txt-center">
+				<h3>Edgefolds</h3>
+				<h6>Left&Right/Palette/Half</h6>
+			</div>
+			<div class="box from-left full hue-green dim-2 txt-white" style="width:50%;">
+				<div class="padding-10">
+					This is a slide-right reveal content box expanding to half container
+				</div>
+			</div>
+			<div class="box from-right full hue-purple dim-2 txt-white" style="width:50%;">
+				<div class="padding-10">
+					This is a slide-left reveal content box expanding to half the container
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content reveal" style="height:250px;">
+			<div class="align-center txt-center">
+				<h3>Edgefolds</h3>
+				<h6>All/Palette/Mixed</h6>
+			</div>
+			<div class="box from-left full hue-green dim-2 txt-white" style="width:33.33%;">
+				<div class="padding-10">
+					This is a slide-right reveal content box expanding to 1/3 of container
+				</div>
+			</div>
+			<div class="box from-top full hue-red dim-2 txt-white" style="width:33.33%;height:50%;left:33.33%;">
+				<div class="padding-10">
+					This is a slide-bottom reveal content box expanding to 1/3 of container
+				</div>
+			</div>
+			<div class="box from-bottom full hue-blue dim-2 txt-white" style="width:33.33%;height:50%;left:33.33%;">
+				<div class="padding-10">
+					This is a slide-up reveal content box expanding to 1/3 of container
+				</div>
+			</div>
+			<div class="box from-right full hue-purple dim-2 txt-white" style="width:33.33%;">
+				<div class="padding-10">
+					This is a slide-left reveal content box expanding to 1/3 of the container
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+</body>
+</html>

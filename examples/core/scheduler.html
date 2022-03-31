@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> Glacier-UI / Core Elements </title>
+
+	<!-- Load Glacier-UI -->
+	<link rel="stylesheet" href="../../dist/glacier.css"> 
+	<script type="text/javascript" src="../../dist/glacier.js"></script>
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:13.5px;
+			color:#333;
+			line-height:20px;
+		}
+	 
+	</style>
+
+</head>
+<body class="glacier"> 
+
+	<div class="container clamp s-large center">
+		<h1> Responsive </h1>
+		<h6>Create and execute task instructions and sets at specified time points.</h6>
+		<span style="font-style: italic;">
+			Using the Date() object in JavaScript, you can define sets of tasks which will be executed at a specific time
+		</span>
+		<hr/><br/>
+		<button id="run" class="button basic">Run Test (2 second delay)</button>
+		<br/><br/><hr/>
+		<h6>Scheduler Data:</h6>
+		<div id="timer"></div>
+		<hr/>
+		<div id="debug"></div>
+	</div>
+
+	<script>
+
+		var $debug = $("#debug");
+		var $timer = $("#timer");
+		var $run = $("#run");
+
+		$run.click(function(){
+ 
+				var taskName = "reminder-"+parseInt(Math.random()*100000);
+				
+				scheduler.addTask( taskName , {
+					task: function( message ) {
+ 
+						html[this.taskReference] += "<div style='padding:10px;border-radius:5px;border:solid 1px #DDD;margin:5px;'>Task ("+this.taskReference+") @ frame ("+this.frameIndex+") completed. Message: "+message+"</div>";
+
+					},
+					date: Date.now() + 2000,	// The current time + 2000 milliseconds
+					//date: new Date("November 8, 2018 04:34:00"),	// A specific date and time. If the current date exceeds the specified date, the task will be executed immediately
+					frames: [
+						{ arguments: ["Awesome"] },
+						{ arguments: ["Next"] },
+						{ arguments: ["Last"] }
+					],
+					intervals: 500
+				});
+ 
+			 
+
+		});
+
+		var ticks = 0;
+		var html = {};
+		var scheduler = new Glacier.modules.scheduler({} , {
+			onSensorTick: function( e ) {
+
+				ticks++; 
+				$timer.html('Number of sensor ticks: '+ticks+'<br/> Number of pending tasks: '+e.taskCount );
+
+			},
+			onTaskStart: function( e ) {
+				html[e.taskReference] = '';
+				html[e.taskReference] += "<div style='padding:10px;border-radius:5px;border:solid 1px #DDD;margin:5px;'>";
+			},
+			onTaskFinish: function( e ) {
+				$debug.append('<div>All frames of task ('+e.taskReference+') completed</div>');
+				$debug.append( html[e.taskReference] );
+				html[e.taskReference] = '';
+			},
+			onFrameStart: function( e ) {
+				$debug.append('<span> Frame ('+e.id+') of task ('+e.taskReference+') started. </span>');
+			},
+			onFrameFinish: function( e ) {
+				$debug.append(' | <span> Frame ('+e.id+') of task ('+e.taskReference+') executed. </span><br/>');
+			}
+		});
+
+		 
+ 
+
+	</script>
+
+</body>
+</html>

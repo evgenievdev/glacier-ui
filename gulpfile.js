@@ -13,7 +13,7 @@ const distDir = "dist/";
 // Compile CSS files
 function buildCSS() {
 
-	return src(['src/core/css/core.scss'])
+	return src(['src/core/css/_CORE_ALL.scss'])
 	  .pipe(concat('glacier.css'))
     .pipe(sass().on('error', sass.logError))
     .pipe(dest( distDir ))
@@ -22,6 +22,19 @@ function buildCSS() {
     .pipe(dest( distDir ));
 
 }
+
+function buildCSSEssentials() {
+
+  return src(['src/core/css/_CORE_ESSENTIALS.scss'])
+    .pipe(concat('glacier.essentials.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(dest( distDir ))
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(rename({ extname: '.min.css' }))
+    .pipe(dest( distDir ));
+  
+}
+
 
 // Compile JS files
 function buildJS() {
@@ -40,4 +53,19 @@ function buildJS() {
 
 }
 
-exports.default = series( buildCSS, buildJS );
+function buildJSEssentials() {
+
+  return src([ 
+       'src/core/js/core.js' , 'src/core/js/polyfills.js', 'src/core/js/utils.js' , 'src/core/js/math.js' , 'src/core/js/compiler.js' ,
+       'src/modules/core/*.js' 
+    ])
+    .pipe(concat('glacier.essentials.js'))
+    .pipe(dest( distDir ))
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(dest( distDir ));
+
+}
+
+
+exports.default = series( buildCSS, buildCSSEssentials, buildJS, buildJSEssentials );

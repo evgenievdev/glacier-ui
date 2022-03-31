@@ -39,6 +39,25 @@ var Glacier = (function() {
 					if( _moduleList[i].name === name ) { return true; }
 				}
 				return false;
+			},
+			// Extract the attributes and values of any element into a JSON object. By default "class" and "id" are ignored
+			attributes: function(el,prefix,ignore) {
+				var r = {};
+				if( typeof ignore !=='object' || !ignore.length ) {
+					ignore = ["class","id"];
+				}
+				el.each(function() {
+					$.each(this.attributes,function(i,a){
+						if( ignore.indexOf(a.name) >= 0 ) { return; }
+						if( typeof prefix == 'string' && a.name.split("-")[0].trim() !== prefix ) { return; }
+						var val = a.value;
+						if( val == "true" ) { val = true; }
+						else if( val == "false" ) { val = false; }
+						else if( !isNaN(val) ) { val =  Number(val); }
+		            	r[a.name] = val;
+		            });
+				});
+	            return r;
 			}
 		}
 	};
@@ -1423,7 +1442,7 @@ if (typeof exports === "object") {
 	
 	function process_module( id ) {
 		
-		var modules = _core.moduleList();
+		var modules = internal.moduleList();
 		if( id < 0 && id >= modules.length ) { return false; }
 		var mod = modules[ id ];
 		// If this module doesn't have a processor method, exit
@@ -1436,9 +1455,9 @@ if (typeof exports === "object") {
 	function compile(debug) {
 		
 		if( debug ) {
-		console.log("Glacier compiler - modules loaded:");
+			console.log("Glacier compiler - modules loaded:");
 		}
-
+		var modules = internal.moduleList();
 		var mod, instances, t0 , t1 , dt;
 		for( var i = 0 ; i < modules.length ; i++ ) {
 	
@@ -1453,7 +1472,7 @@ if (typeof exports === "object") {
 			dt = t1 - t0;
 			
 			if( debug ) {
-			console.log('%c ' + mod.name + ": " + loaded[ mod.name ].length +" ("+dt.toFixed(4)+"ms)", 'background: hsl( '+360/modules.length * i+', 50% , 50%); color: #fff; padding:2px;');
+				console.log('%c ' + mod.name + ": " + loaded[ mod.name ].length +" ("+dt.toFixed(4)+"ms)", 'background: hsl( '+360/modules.length * i+', 50% , 50%); color: #fff; padding:2px;');
 			}
 
 		}	
@@ -3117,9 +3136,7 @@ if (typeof exports === "object") {
 
 			}
 		}
-
-		var delay = cfg.animation && cfg.duration > 0 ? cfg.duration : 0;
-
+ 
 		// Go through all elements and set their visibility according to their properties
 		elements.each( function( id ) {
 		
@@ -3138,22 +3155,20 @@ if (typeof exports === "object") {
 		 		// If it is, then make the element visible. Otherwise, hide it. 
 		 		if( cs == thisScreen ) {
  					 
-		 			if( cfg.toggleContent && !isStatic ) {
-		 				if( current.is(":visible") ) { break; }
-		 				current.stop(true,true).fadeIn(delay); 
+		 			if( cfg.toggleContent && !isStatic && current.is(":hidden") ) {
+		 				current.stop(true,true).show(); 
 		 			}
-		 			if( typeof events.onShow == 'function' ) {
+		 			if( typeof events.onShow == 'function' && current.is(":visible") ) {
 		 				events.onShow( elements , current , cs );
 		 			}
 		 			break;
 
 		 		} else {
  
-		 			if( cfg.toggleContent && !isStatic ) { 
-		 				if( current.is(":hidden") ) { break; }
-		 				current.stop(true,true).fadeOut(delay); 
+		 			if( cfg.toggleContent && !isStatic && current.is(":visible") ) { 
+		 				current.stop(true,true).hide(); 
 		 			}
-		 			if( typeof events.onShow == 'function' ) {
+		 			if( typeof events.onShow == 'function' && current.is(":hidden") ) {
 		 				events.onHide( elements , current , cs );
 		 			}
 
@@ -3197,8 +3212,6 @@ if (typeof exports === "object") {
 		defaultSettings: function() {
 
 			return {
-				animation: true,
-				duration: 400,
 				toggleContent: true,	// Set to false to use this instance as a sensor only which fires events
 				dynamic: true
 			};
@@ -4194,55 +4207,118 @@ if (typeof exports === "object") {
 	//"use strict";
 	var _modname = "accordion";
 
+	var _anims = {
+		"show": "slideDown",
+		"hide": "slideUp"
+	};
+
+	_core.processors[_modname] = function( tagPrefix , tag , cssClass ) {
+		
+		var $accordions = $( tagPrefix + tag ); 
+		var accordions = new Array( $accordions.length );
+		var c;
+		$accordions.each(function( index ) {
+		
+			c = $(this);
+			var accordion = c.children( cssClass );
+			var options = {
+				parallel : c.attr('parallel') == "true" ? true : false,
+				opened : c.attr('opened') == "true" ? true : false,
+				animation : c.attr('animation') == "false" ? false : true,
+				duration : c.attr('duration') == undefined ? 400 : parseInt( c.attr('duration') )
+			};
+			 
+			accordions[ index ] = new instance( accordion , options );
+		
+		});
+		
+		return accordions;
+		
+	};
+
 	var instance = function( target , options ) {
 
+		options = options || {};
 		this.target = typeof target == 'string' ? $( target ) : target;
+		this.vertical = this.target.hasClass("vertical") ? true : false;
 
-		this.items = this.target.find(".item");
-		this.data = [];
+		this.cfg = this.defaultSettings();
+		utils.applyProperties( this.cfg , options );
+		this.events = {
+			onOpen: false,
+			onClose: false,
+			onOpenAll: false,
+			onCloseAll: false
+		};
+		utils.applyProperties( this.events , options.events );
 
-		this.items.each( function(index){
+		this.findItems();
 
-			var item = $(this.items[index]);
-
-			var link = item.find(".link");
-			var open = item.find(".open");
-			var close = item.find(".close");
-			var content = item.find(".content");
-
-			open.show();
-			close.hide();
-
-			open.click( function(){
-
-				this.toggle("show",index);
-				open.hide();
-				close.show();
-
-			}.bind(this) );
-
-			close.click( function(){
-
-				this.toggle("hide",index);
-				close.hide();
-				open.show();
-
-			}.bind(this) );
-
-			this.data.push({
-				link: link,
-				open: open,
-				close: close,
-				content: content
-			});
- 
-		}.bind(this) );
-
-		this.hideAll();
+		if( !this.cfg.opened ) {
+			this.hideAll();
+		} else {
+			this.showAll();
+		}
 
 	}
 
 	Object.assign( instance.prototype , {
+
+		defaultSettings: function() {
+			return {
+				animation: true,
+				duration: 400,
+				parallel: false,
+				opened: false,
+				itemSelector: ".item",
+				linkSelector: ".link",
+				contentSelector: ".content"
+			};
+		},
+
+		findItems: function() {
+
+			this.items = this.target.children( this.cfg.itemSelector );
+			this.data = [];
+
+			this.items.each( function(index){
+
+				var item = $(this.items[index]);
+
+				var link = item.children(this.cfg.linkSelector);
+				var open = link.find(".open");
+				var close = link.find(".close");
+				var content = item.children(this.cfg.contentSelector);
+
+				open.show();
+				close.hide();
+
+				open.click( function(index){
+
+					this.toggle("show",index);
+					open.hide();
+					close.show();
+
+				}.bind(this,index) );
+
+				close.click( function(index){
+
+					this.toggle("hide",index);
+					close.hide();
+					open.show();
+
+				}.bind(this,index) );
+
+				this.data.push({
+					link: link,
+					open: open,
+					close: close,
+					content: content
+				});
+	 
+			}.bind(this) );
+
+		},
 
 		toggleAll : function( action , except ) {
 
@@ -4250,21 +4326,43 @@ if (typeof exports === "object") {
 
 			if( except == undefined ) { except = []; }
 			if( !except.length ) { except = [except]; }
-
+ 
+ 			var ac = this.cfg.animation ? _anims[action] : action;
+ 			var dur = this.cfg.animation ? this.cfg.duration : 0;
+			 
 			for( var i = 0 ; i < this.data.length; i++ ) {
-	 			
+	 		 
 				if( except.indexOf(i) >= 0 ) { continue; }
 
-				this.data[i].content[action]();
-
+				var d = this.data[i];
 				if( action == "show" ) {
-					this.data[i].close.show();
-					this.data[i].open.hide();
+					d.close.show();
+					d.open.hide();
 				} else if( action == "hide" ) {
-					this.data[i].close.hide();
-					this.data[i].open.show();
+					d.close.hide();
+					d.open.show();
 				}
 
+
+				if( this.vertical ) {
+					if( action == "show" && d.content.is(":visible") ) { continue; }
+					if( action == "hide" && d.content.is(":hidden") ) { continue; }
+					d.content.stop().animate({ width:"toggle" },dur);
+				} else {
+					d.content.stop()[ ac ]( dur );
+				}
+
+			}
+
+			var ev = this.data;
+			if( action == "show" ) {
+				if( typeof this.events["onOpenAll"] === 'function' ) {
+					this.events["onOpenAll"]( ev );
+				}
+			} else {
+				if( typeof this.events["onCloseAll"] === 'function' ) {
+					this.events["onCloseAll"]( ev );
+				}
 			}
 
 		},
@@ -4287,15 +4385,35 @@ if (typeof exports === "object") {
 			var n = this.data.length;
 			if( id < 0 || id >= n ) { return false; }
 
-			if( action == "show" ) { this.hideAll(id); }
-			
-			this.data[id].content[action]();
+			if( action == "show" && !this.cfg.parallel ) { this.hideAll(id); }
+			var dc = this.data[id].content;
+			var ac = this.cfg.animation ? _anims[action] : action;
+			var dur = this.cfg.animation ? this.cfg.duration : 0;
+			if( this.vertical ) {
+				if( action == "show" && dc.is(":visible") ) { return; }
+				if( action == "hide" && dc.is(":hidden") ) { return; }
+				dc.stop().animate({ width:"toggle" },dur);
+			} else {
+				dc.stop()[ ac ]( dur );
+			}
+
+			// Event callbacks
+			var ev = this.data[id];
+			if( action == "show" ) {
+				if( typeof this.events["onOpen"] === 'function' ) {
+					this.events["onOpen"]( ev );
+				}
+			} else {
+				if( typeof this.events["onClose"] === 'function' ) {
+					this.events["onClose"]( ev );
+				}
+			}
 
 		}
 
 	});
 
-	internal.defineModule( _modname , instance );
+	internal.defineModule( _modname , instance , _modname , "."+_modname );
 
 
 })( Glacier , Glacier.utils, Glacier.internal );
@@ -4343,17 +4461,7 @@ if (typeof exports === "object") {
 	var instance = function( target , options ) {
 	 
 		// Default configuration
-		this.cfg = {
-			width: "100%",
-			height: 300,
-			autoplay: false,
-			interval: 1000,
-			animation: 500,
-			revert: true,
-			swipe: true,
-			swipemin: 100,
-			vertical: false
-		};
+		this.cfg = this.defaultSettings();
 		utils.applyProperties( this.cfg , options );
 		 
  
@@ -4516,6 +4624,20 @@ if (typeof exports === "object") {
 	};
 
 	Object.assign( instance.prototype , {
+
+		defaultSettings:function() {
+			return {
+				width: "100%",
+				height: 300,
+				autoplay: false,
+				interval: 1000,
+				animation: 500,
+				revert: true,
+				swipe: true,
+				swipemin: 100,
+				vertical: false
+			};
+		},
 
 		_itemsPerPage : function( vertical ) {
 	 
@@ -5312,8 +5434,8 @@ if (typeof exports === "object") {
 
 	};	
 
-	internal.defineModule( _modname , instance );
-	internal.defineModule( _modname2 , procedural );
+	internal.defineModule( _modname , instance , _modname , "."+_modname );
+	internal.defineModule( _modname2 , procedural , _modname2 , "."+_modname );
  
 
 })( Glacier , Glacier.utils , Glacier.internal );
@@ -6204,7 +6326,7 @@ if (typeof exports === "object") {
 
 	});
 
-	internal.defineModule( _modname , instance );
+	internal.defineModule( _modname , instance , _modname , "."+_modname );
 	 
 
 })( Glacier , Glacier.utils , Glacier.internal );
@@ -6216,203 +6338,252 @@ if (typeof exports === "object") {
 
 	var instance = function( target , options ) {
 		
-		this.cfg = {
-			
-			type: 'horizontal', // horizontal , vertical , radial
-			min: 0,
-			max: 100,
-			animation: 200,
-			colors: [
-				{ h: 0 , s: 50 , l: 50 },
-				{ h: 150 , s: 50 , l: 50 }
-			]
-			
-		}
-
+		options = options || {};
 		this.target = typeof target == 'string' ? $( target ) : target;
-		
+		// Look for the vertical class on this progress bar instance and adjust accordingly. Boolean.
+		this.vertical = this.target.hasClass("vertical") ? true : false;
+
+		this.cfg = this.defaultSettings();
+		this.events = {
+			onValueSet: false
+		};
+		utils.applyProperties( this.events , options.events );
+		utils.applyProperties( this.cfg , options );
+ 		
 		this.progress = this.target.children('.progress');
-		
 		this.handle = this.progress.children('.handle');
-		
-		this.value = this.cfg.min;
-		 
-		var dragging = false;
-		var	sx = 0 , sy = 0, cx = 0 , cy = 0, dx = 0 , dy = 0;
-		var pw, hspx, hspy, rem, which_handle;
-		
-		this.handle.on('mousedown touchstart', function( e ) {
-			 
-			dragging = true;
+		this.values = [ this.cfg.max , this.cfg.min ];
 
-			if( e.touches !== undefined ) {
-			
-				sx = e.touches[ 0 ].clientX;
-				sy = e.touches[ 0 ].clientY;
-			
-			} else {
-			
-				sx = e.clientX;
-				sy = e.clientY;
-			
-			}
-			
-			pw = this.target.width();
-			
-			var target = e.target;
-			
-			which_handle = $( target ).hasClass('min') == true ? 'min' : 'max';
-		
-			
-			var left = parseInt( this.progress.css('left') , 10 );
-			if( which_handle == 'max' ) {
-				 
-				hspx = parseInt( this.progress.css( 'width' ) , 10 ) + left;
-				rem = pw - hspx + left;
-				
-			} else if( which_handle == 'min' ) {
-			
-				hspx = left;
-				rem = pw;
-			
-			}
-			 
-			 
-			 
-		  
-		}.bind( this ) );
-		
-		$( window ).on('mousemove touchmove', function( e ) {
-			
-			if( dragging === true ) {
-
-				if( e.touches !== undefined ) {
-			
-					cx = e.touches[ 0 ].clientX;
-					cy = e.touches[ 0 ].clientY;
-					
-					dx = cx - sx;
-					dy = dy - sy;
-				
-				} else {
-				
-					cx = e.clientX;
-					cy = e.clientY;
-				
-					dx = cx - sx;
-					dy = cy - sy;
-				
-				}
-				
-				if( dx !== 0 && dx <= rem ) {
-					
-					var posx = hspx + dx;
-					if( posx > pw ) { 
-						posx = pw;
-					} else if( posx < 0 ) {
-						posx = 0;
-					}
-				
-					var prop = posx / pw;
-					var newval = ( this.cfg.max - this.cfg.min ) * prop + this.cfg.min;
-				 
-					this.set_value( newval , false , which_handle ); 
-				 
-				
-				}
-			 
-			}
-			
-		}.bind( this ) );
-		
-		$( window ).on('mouseup touchend',function( e ) {
+		if( typeof this.cfg.value == 'number' ) {
+			this.setVal( this.cfg.value , false );
+		} else if( typeof this.cfg.value == 'object' && this.cfg.value.length >= 2 ) {
+			this.setVal( this.cfg.value[0] , false , "max" );
+			this.setVal( this.cfg.value[1] , false , "min" );
+		}
 		 
-			dragging = false;
+		this.setupEvents();
 		 
-		}.bind( this ) );
-		
-		
-		this.target.on('mousedown' , function( e ) {
-			
-			// Make sure the user is not clicking the handle
-			if( !$( e.target ).closest( this.handle ).length ) {
-			
-				var offset = this.target.offset(); 
-
-				var relX = e.pageX - offset.left;
-				var relY = e.pageY - offset.top;
-				
-				var bw = this.target.width();
-				
-				var prop = relX / bw;
-				 
-				var newval = ( this.cfg.max - this.cfg.min ) * prop + this.cfg.min;
-				 
-				var which = relX < parseInt( this.progress.css('left') , 10 ) ? "min" : "max"
-				 
-				this.set_value( newval , true , which );
-		
-				
-			}
-		
-		}.bind( this ) );
 		
 	};
 
 	Object.assign( instance.prototype , {
 
-		get_percent : function( v ) {
+		defaultSettings: function(){
+			return {
+				type: 'horizontal', // horizontal , vertical , radial
+				min: 0,
+				max: 100,
+				interval: 0,
+				value: 0,
+				animation: 200,
+				colors: [
+					{ h: 0 , s: 50 , l: 50 },
+					{ h: 150 , s: 50 , l: 50 }
+				] 
+			}
+		},
+
+		setupEvents: function() {
+
+			var dragging = false;
+			var	sx = 0 , sy = 0, cx = 0 , cy = 0, dx = 0 , dy = 0;
+			var pw, ph, hspx, hspy, rem, which_handle;
+			
+			this.handle.on('mousedown touchstart', function( e ) {
+				 
+				dragging = true;
+
+				if( e.touches !== undefined ) {
+					sx = e.touches[ 0 ].clientX;
+					sy = e.touches[ 0 ].clientY;
+				} else {
+					sx = e.clientX;
+					sy = e.clientY;
+				}
+				
+				pw = this.target.width();
+				ph = this.target.height();
+
+				var target = e.target;
+				which_handle = $( target ).hasClass('min') == true ? 'min' : 'max';
+				var vert = this.vertical;
+				var left = parseFloat( this.progress.css('left') );
+				var bottom = parseFloat( this.progress.css('bottom') );
+				if( which_handle == 'max' ) {
+					 
+					hspx = parseFloat( this.progress.css( 'width' ) ) + left;
+					hspy = parseFloat( this.progress.css( 'height' ) ) + bottom;
+					rem = vert ? (ph - hspy + bottom) : (pw - hspx + left);
+					 
+
+				} else if( which_handle == 'min' ) {
+				
+					hspx = left;
+					hspy = bottom;
+					rem = vert ? ph : pw;
+				
+				}
+				 
+			  
+			}.bind( this ) );
+			
+			$( window ).on('mousemove touchmove', function( e ) {
+				
+				if( !dragging  ) { return; }
+
+				if( e.touches !== undefined ) {
+					cx = e.touches[ 0 ].clientX;
+					cy = e.touches[ 0 ].clientY;
+				} else {	
+					cx = e.clientX;
+					cy = e.clientY;				
+				}
+				dx = cx - sx;
+				dy = cy - sy;
+				var vert = this.vertical;
+
+				if( dx !== 0 && dx <= rem ) {
+					
+					var posx = utils.clamp( hspx + dx , 0 , pw );
+					var posy = utils.clamp( hspy - dy , 0 , ph );
+				 
+					var prop = vert ? posy/ph : posx/pw;
+					var newval = ( this.cfg.max - this.cfg.min ) * prop + this.cfg.min;
+				 		 
+					this.setVal( newval , false , which_handle ); 
+				 
+				
+				}
+				  
+				
+			}.bind( this ) );
+			
+			$( window ).on('mouseup touchend',function( e ) {
+			 
+				dragging = false;
+			 
+			}.bind( this ) );
+			
+			
+			this.target.on('mousedown touchstart' , function( e ) {
+				
+				// Make sure the user is not clicking the handle
+				if( !$( e.target ).closest( this.handle ).length ) {
+				
+					var offset = this.target.offset(); 
+
+					var relX = e.pageX - offset.left;
+					var relY = e.pageY - offset.top;
+					var vert = this.vertical;
+					var bw = this.target.width();
+					var bh = this.target.height();
+					var prop = vert ? 1-relY/bh : relX/bw; 
+					var newval = ( this.cfg.max - this.cfg.min ) * prop + this.cfg.min;
+			 		 
+					var which;
+					if( vert ) {
+						which = bh-relY < parseFloat( this.progress.css('bottom') ) ? "min" : "max";
+					} else {
+						which = relX < parseFloat( this.progress.css('left') ) ? "min" : "max";
+					} 
+		 
+					this.setVal( newval , true , which );
+			
+					
+				}
+			
+			}.bind( this ) );
+
+		},
+
+		getPercent : function( v ) {
 
 			return (v - this.cfg.min) / (this.cfg.max - this.cfg.min);
 
 		},
 
-		set_value : function( v , animate , which ) {
+		getVal: function() {
+
+			if( this.handle.length === 1 ) { return this.values[0]; }
+			return this.values;
+
+		},
+
+		setVal : function( v , animate , which ) {
 			
 			if( v == undefined ) { return; }
+			if( which == undefined ) { which = "max"; }
 			
-			this.value = Math.min( Math.max( v , this.cfg.min ) , this.cfg.max );
+			var vert = this.vertical;
+			var id = which == "max" ? 0 : 1;
+			var newval = utils.clamp( v, this.cfg.min, this.cfg.max );
+			var oldval = this.values[id];
+			this.values[id] = newval;
 			
-			var percent = this.get_percent( v );
-			
-			var min_percent = parseInt( this.progress.css('left') , 10 ) / this.target.width();
+			var tw = this.target.width();
+			var th = this.target.height();
+			var pw = this.progress.width();
+			var ph = this.progress.height();
+			var left = parseFloat( this.progress.css("left") );
+			var bottom = parseFloat( this.progress.css("bottom") ); 
+
+			var percent = this.getPercent( v );
+			var min_percent = vert ? bottom/th : left/tw;
 			
 			var anim;
 			if( which == "min" ) {
-			
-				anim = {
-					left: percent * 100 + "%",
-					width: this.progress.width() + parseInt( this.progress.css('left') , 10 ) - this.target.width() * percent + "px"
-				};
+				
+				if( vert ) {
+					anim = {
+						bottom: percent * 100 + "%",
+						height: ph + bottom - th * percent + "px"
+					};
+				} else {
+					anim = {
+						left: percent * 100 + "%",
+						width: pw + left - tw * percent + "px"
+					};
+				}
 			
 			} else if( which == "max" ) {
-			
-				anim = {
-					width: (percent - min_percent) * 100 + "%"
-				};
-			
+				
+				var prop = vert ? "height" : "width";
+				anim = {};
+				anim[prop] = (percent - min_percent) * 100 + "%";
+	 
 			}
 			
 			if( animate == true ) {
-			
 				this.progress.animate( anim , this.cfg.animation );
-			
 			} else {
-
 				this.progress.css( anim );
-				
 			}
 			
 			if( this.cfg.colors !== undefined && this.cfg.colors.constructor === Array ) {
 			 
 				var col = this.cfg.colors;
 				
-				var h = percent * (col[ 1 ].h - col[ 0 ].h) + col[ 0 ].h;
-				var s = percent * (col[ 1 ].s - col[ 0 ].s) + col[ 0 ].s;
-				var l = percent * (col[ 1 ].l - col[ 0 ].l) + col[ 0 ].l;
+				var cp = this.handle.length >= 2 ? this.getPercent( this.values[0] ) - this.getPercent( this.values[1] ) : percent;
+				var h = cp * (col[ 1 ].h - col[ 0 ].h) + col[ 0 ].h;
+				var s = cp * (col[ 1 ].s - col[ 0 ].s) + col[ 0 ].s;
+				var l = cp * (col[ 1 ].l - col[ 0 ].l) + col[ 0 ].l;
 				
 				this.progress.css( "background" , "hsl( "+h+" , "+s+"% , "+l+"% )" );
 
+			}
+
+			if( typeof this.events["onValueSet"] === 'function') {
+				var ev = {
+					$target: this.target , 
+					$progress: this.progress , 
+					$handle: this.handle[id] , 
+					handleType: which , 
+					oldVal: oldval , 
+					newVal: newval , 
+					min: this.cfg.min , 
+					max: this.cfg.max
+				};
+				this.events["onValueSet"]( ev );
 			}
 
 		}
@@ -6565,7 +6736,7 @@ if (typeof exports === "object") {
 
 	});
 
-	internal.defineModule( _modname , instance );
+	internal.defineModule( _modname , instance , _modname , "."+_modname );
 
 })( Glacier , Glacier.utils , Glacier.internal );
  
@@ -6648,7 +6819,7 @@ if (typeof exports === "object") {
 
 	});
 
-	internal.defineModule( _modname , instance );
+	internal.defineModule( _modname , instance , _modname , "."+_modname );
 
 })( Glacier , Glacier.utils , Glacier.internal );
 
@@ -7486,7 +7657,7 @@ if (typeof exports === "object") {
 
 	});
 
-	internal.defineModule( _modname , instance );
+	internal.defineModule( _modname , instance , _modname , "."+_modname );
  
 
 })( Glacier , Glacier.utils , Glacier.internal );

@@ -1,0 +1,57 @@
+<gl-template name="customer">
+
+	<div style="padding:20px;border:solid 1px #EEE;border-radius: 5px;">
+
+		<h6>Profile: </h6>
+		[[name]]
+		<br/>
+		[[address]]
+		<br/>
+		[[phone-number]]
+		<br/>
+		My favourite beer is: [[fridge.beer.favourite]]
+		<br/><br/>
+		I own: [[>car]]
+		<br/>
+		[[>footer]]
+		<br/>
+
+	</div>
+
+</gl-template>
+
+<gl-template name="footer">
+	This is a footer that doesn't use any variables.
+</gl-template>
+
+<gl-template name="car">
+
+	A [[year]] [[name]] in [[color]] with [[mileage]] miles on it.
+	<br/><br/>
+	Service history: <br/>
+	[[>history]]
+
+</gl-template>
+
+<gl-template name="history">
+
+	Last maintenance: [[maintenance]]<br/>
+	MOT: [[MOT]]<br/>
+	Repairs: <br/>
+	<ol>
+		[[>repair]]
+	</ol>
+
+</gl-template>
+
+<gl-template name="repair">
+
+	<li>
+		Date: [[date]]
+		<br/>
+		Parts Changed: [[parts]]
+	</li>
+
+</gl-template>
+
+ 

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+  
+	<title> Sliders </title>
+
+	<!-- Load Glacier-UI -->
+	<script src="../../dist/glacier.min.js"></script>
+	<link rel="stylesheet" href="../../dist/glacier.min.css">
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:14px;
+			color:#333;
+			font-weight:300;
+			background:#f1f1f1;
+		}
+		 
+		.box {
+			padding:20px 30px;
+			margin:20px 0px;
+			background:#fff;
+		}
+	</style>
+
+</head>
+<body class="glacier"> 
+
+<div style="display:table;margin:0pt auto;">
+	
+	<br/>
+	<h1 class="no-margin">Sliders</h1>
+	<h6>Simple horizontal and vertical sliders with single or dual controls and events.</h6>
+	Drag any of the handles or click anywhere on the progress bar to change the value.
+	<hr class="hue-grey undim-3"/>
+
+	<div class="msg info">
+		<i class="fa fa-info icon left"></i>
+		This module is compatible with other components such as the Palette, Generics and more.
+	</div>
+
+	<div class="box">
+
+		<h4>Single Handle</h4><br/><br/>
+		<div class="slider" id="slider1">
+			<div class="progress">
+				<div class="handle no-select">=</div>
+			</div>
+		</div>
+		<script>
+			var slider1 = new Glacier.modules.slider("#slider1");
+		</script>
+
+	</div>
+
+	<div class="box">
+
+		<h4>Single Handle / Top Placement</h4><br/><br/>
+		<div class="slider" id="slider2">
+			<div class="progress">
+				<div class="handle top ellipse no-select">=</div>
+			</div>
+		</div>
+		<script>
+			var slider2 = new Glacier.modules.slider("#slider2");
+		</script>
+
+	</div>
+
+	<div class="box">
+
+		<h4>Single Handle / Bottom Placement</h4><br/><br/>
+		<div class="slider" id="slider3">
+			<div class="progress">
+				<div class="handle bottom ellipse no-select">=</div>
+			</div>
+		</div>
+		<script>
+			var slider3 = new Glacier.modules.slider("#slider3");
+		</script>
+
+
+	</div>
+
+	<div class="box">
+
+		<br/>
+		<h4>Min/Max Slider</h4><br/><br/>
+		<div class="slider" id="slider4">
+			<div class="progress">
+				<div class="handle min ellipse no-select">=</div>
+				<div class="handle max ellipse no-select">=</div>
+			</div>
+		</div>
+		<script>
+			var slider4 = new Glacier.modules.slider("#slider4",{
+				value:[50,25]	// Max , Min
+			});
+		</script>
+
+	</div>
+
+	<div class="box">
+
+		<br/>
+		<h4>Min/Max Slider / Top & Bottom Placement</h4><br/><br/>
+		<div class="slider" id="slider5">
+			<div class="progress">
+				<div class="handle min top ellipse no-select">=</div>
+				<div class="handle max bottom ellipse no-select">=</div>
+			</div>
+		</div>
+		<script>
+			var slider5 = new Glacier.modules.slider("#slider5",{
+				value:[80,25]	// Max , Min
+			});
+		</script>
+
+	</div>
+
+	<div class="box">
+
+		<br/>
+		<h4>Progress with Palette</h4><br/><br/>
+		<div class="slider" id="slider6">
+			<div class="progress hue-blue undim-2">
+				<div class="handle ellipse no-select hue-blue txt-white">=</div>
+			</div>
+		</div>
+		<script>
+			var slider6 = new Glacier.modules.slider("#slider6");
+		</script>
+
+	</div>
+
+	<div class="box" style="float:left;width:40%;">
+
+		<br/>
+		<h4>Vertical</h4><br/><br/>
+		<div class="slider vertical align-center-x" id="slider7">
+			<div class="progress">
+				<div class="handle no-select">=</div>
+			</div>
+		</div>
+		<script>
+			var slider7 = new Glacier.modules.slider("#slider7",{
+				value:50
+			});
+		</script>
+
+	</div>
+
+	<div class="box" style="float:right;width:40%;">
+
+		<br/>
+		<h4>Vertical Min/Max</h4><br/><br/>
+		<div class="slider vertical align-center-x" id="slider8">
+			<div class="progress">
+				<div class="handle min ellipse no-select">=</div>
+				<div class="handle max ellipse no-select">=</div>
+			</div>
+		</div>
+		<script>
+			var slider8 = new Glacier.modules.slider("#slider8",{
+				value:[75,25] // Max , Min
+			});
+		</script>
+
+	</div>
+	<br class="clear"/>
+
+	<div class="box">
+
+		<br/>
+		<h4>Events</h4><br/><br/>
+		<div class="slider" id="slider9">
+			<div class="progress">
+				<div class="handle ellipse no-select">=</div>
+			</div>
+		</div>
+		<div id="slider9-value" class="padding-15 align-center-x"></div>
+		<br/><br/>
+		<script>
+			var slider9 = new Glacier.modules.slider("#slider9",{
+				min:0,
+				max:8000,
+				events: {
+					onValueSet: function( e ) {
+
+						// e : Object { $target , $progress , $handle , handleType , oldVal , newVal , min , max }
+						 
+						if( e.newVal > (e.max-e.min)/2 ) { 
+							$("#slider9-value").html( "TARGET OF 50% REACHED!" );
+						} else {
+							$("#slider9-value").html( e.newVal.toFixed(2) );
+						}
+					}
+				}
+			});
+		</script>
+
+	</div>
+
+	<div class="box">
+
+		<br/>
+		<h4>Generics</h4><br/><br/>
+		<div class="slider" id="slider10" style="height:80px;">
+			<div class="progress hue-blue undim-2">
+				<div class="handle radius-0 fluid-v no-select hue-blue txt-white">
+					<div class="align-center">=</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var slider10 = new Glacier.modules.slider("#slider10");
+		</script>
+
+	</div>
+
+
+	<div class="box">
+
+		<br/>
+		<h4>Linear Color Scale</h4><br/><br/>
+		<div class="slider" id="slider11">
+			<div class="progress">
+				<div class="handle no-select">=</div>
+			</div>
+		</div>
+		<script>
+			var slider11 = new Glacier.modules.slider("#slider11",{
+				value:75,
+				colors:[
+					{ h: 100 , s: 0 , l: 50 },
+					{ h: 360 , s: 80 , l: 50 }
+				]
+			});
+		</script>
+
+	</div>
+ 
+ 
+</div>
+
+</body>
+</html>

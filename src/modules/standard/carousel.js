@@ -40,17 +40,7 @@
 	var instance = function( target , options ) {
 	 
 		// Default configuration
-		this.cfg = {
-			width: "100%",
-			height: 300,
-			autoplay: false,
-			interval: 1000,
-			animation: 500,
-			revert: true,
-			swipe: true,
-			swipemin: 100,
-			vertical: false
-		};
+		this.cfg = this.defaultSettings();
 		utils.applyProperties( this.cfg , options );
 		 
  
@@ -213,6 +203,20 @@
 	};
 
 	Object.assign( instance.prototype , {
+
+		defaultSettings:function() {
+			return {
+				width: "100%",
+				height: 300,
+				autoplay: false,
+				interval: 1000,
+				animation: 500,
+				revert: true,
+				swipe: true,
+				swipemin: 100,
+				vertical: false
+			};
+		},
 
 		_itemsPerPage : function( vertical ) {
 	 

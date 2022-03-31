@@ -1,0 +1,55 @@
+.reveal {
+	position: relative;
+	overflow: hidden;
+
+	.box {
+		position:absolute;
+		width:100%;
+		transition:0.5s all;
+		transition-property: left,right,top,bottom;
+
+		&.full {
+			height:100%;
+		}
+
+		&.from-top {
+			top:-100%;
+			left:0;
+		}
+		&.from-bottom {
+			bottom:-100%;
+			left:0;
+		}
+		&.from-left {
+			top:0;
+			left:-100%;
+		}
+		&.from-right {
+			top:0;
+			right:-100%;
+		}
+
+	}
+
+	&:hover {
+
+		.box {
+			&.from-top {
+				top:0;
+			}
+			&.from-bottom {
+				bottom:0;
+			}
+			&.from-left {
+				left:0;
+			}
+			&.from-right {
+				right:0;
+			}
+		}
+
+	}
+
+}
+
+ 

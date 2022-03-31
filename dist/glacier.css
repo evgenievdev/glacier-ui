@@ -1,8 +1,12 @@
 /*
 	@package: Glacier-UI
-	@description:  
 	@author: I.E.Liksov
-	@version: 0.1
+	@version: 0.11
+*/
+/*
+	@package: Glacier-UI
+	@author: I.E.Liksov
+	@version: 0.11
 */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -371,18 +375,7 @@ template {
   /* --------------------------------------------------- NAVIGATION ---------------------------------------------- */
   /* Buttons */
   /* Color palette */
-  /* ------------------------------------------------- COMMENTS --------------------------------------- */
-  /**
-* Modals
-*
-*
-*/
-  /*
-.tabs .links li:hover {
-	background: #2f9dc9;
-	color:#FFF;
-}
-*/ }
+  /* ------------------------------------------------- COMMENTS --------------------------------------- */ }
   .glacier table {
     border-collapse: collapse;
     width: 100%; }
@@ -464,6 +457,9 @@ template {
     font-weight: bold; }
   .glacier .italic {
     font-style: italic; }
+  .glacier .upright {
+    writing-mode: vertical-lr;
+    text-orientation: upright; }
   .glacier .regular {
     font-size: 1em; }
   .glacier .small {
@@ -530,6 +526,8 @@ template {
     float: left; }
   .glacier .clear {
     clear: both; }
+  .glacier .txt-center {
+    text-align: center; }
   .glacier .glass-dark {
     background: rgba(0, 0, 0, 0.8) !important; }
   .glacier .radius-0 {
@@ -626,6 +624,10 @@ template {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22), 0 14px 56px rgba(0, 0, 0, 0.25); }
   .glacier .shadow-5 {
     box-shadow: 0 15px 24px rgba(0, 0, 0, 0.22), 0 19px 76px rgba(0, 0, 0, 0.3); }
+  .glacier .fluid-h {
+    width: 100% !important; }
+  .glacier .fluid-v {
+    height: 100% !important; }
   .glacier .align-frame {
     position: relative;
     overflow: hidden; }
@@ -645,8 +647,6 @@ template {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) !important; }
-  .glacier .center-text {
-    text-align: center !important; }
   .glacier .pivot-center {
     transform: translate(-50%, -50%); }
   .glacier .pivot-center-x {
@@ -705,6 +705,15 @@ template {
     background: #191b21;
     border-bottom: solid 1px #333743;
     margin: 10px 0px; }
+  .glacier .avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0pt auto;
+    border-radius: 50%;
+    line-height: 100px;
+    color: #fff;
+    text-align: center;
+    font-size: 40px; }
   @media all and (min-width: 640px) {
     .glacier .s-only {
       display: none; } }
@@ -1852,23 +1861,151 @@ template {
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
       border-bottom: 10px solid #f1f1f1; } }
+  .glacier .edgefold {
+    position: relative;
+    padding: 10px;
+    margin: 20px; }
+    .glacier .edgefold .content {
+      background: #fff;
+      padding: 20px;
+      line-height: 20px;
+      position: relative; }
+    .glacier .edgefold .shade {
+      filter: blur(12px);
+      /* Someday, sigh ... */
+      -webkit-filter: blur(12px);
+      /* Prefixed CSS3 blur filters */
+      -moz-filter: blur(12px);
+      -o-filter: blur(12px);
+      -ms-filter: blur(12px);
+      filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='$val');
+      /* IE lte 9 */
+      background: rgba(0, 0, 0, 0.07);
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      position: absolute; }
+      .glacier .edgefold .shade.bottom-left {
+        bottom: 0;
+        left: 0; }
+      .glacier .edgefold .shade.bottom-right {
+        bottom: 0;
+        right: 0; }
+      .glacier .edgefold .shade.top-left {
+        top: 0;
+        left: 0; }
+      .glacier .edgefold .shade.top-right {
+        top: 0;
+        right: 0; }
+      .glacier .edgefold .shade.edge-bottom {
+        bottom: 0;
+        width: 100%; }
+      .glacier .edgefold .shade.edge-top {
+        top: 0;
+        width: 100%; }
+      .glacier .edgefold .shade.edge-top.middle, .glacier .edgefold .shade.edge-bottom.middle {
+        left: 50% !important;
+        transform: translateX(-50%); }
+      .glacier .edgefold .shade.edge-top.half, .glacier .edgefold .shade.edge-bottom.half {
+        width: 50%; }
+      .glacier .edgefold .shade.edge-left, .glacier .edgefold .shade.edge-right {
+        height: 100%;
+        top: 0; }
+        .glacier .edgefold .shade.edge-left.thin, .glacier .edgefold .shade.edge-right.thin {
+          height: 100% !important;
+          width: 10px; }
+        .glacier .edgefold .shade.edge-left.middle, .glacier .edgefold .shade.edge-right.middle {
+          top: 50% !important;
+          transform: translateY(-50%); }
+        .glacier .edgefold .shade.edge-left.half, .glacier .edgefold .shade.edge-right.half {
+          height: 50% !important; }
+      .glacier .edgefold .shade.edge-left {
+        left: 0; }
+      .glacier .edgefold .shade.edge-right {
+        right: 0; }
+      .glacier .edgefold .shade.thin {
+        height: 10px; }
+  .glacier .reveal {
+    position: relative;
+    overflow: hidden; }
+    .glacier .reveal .box {
+      position: absolute;
+      width: 100%;
+      transition: 0.5s all;
+      transition-property: left,right,top,bottom; }
+      .glacier .reveal .box.full {
+        height: 100%; }
+      .glacier .reveal .box.from-top {
+        top: -100%;
+        left: 0; }
+      .glacier .reveal .box.from-bottom {
+        bottom: -100%;
+        left: 0; }
+      .glacier .reveal .box.from-left {
+        top: 0;
+        left: -100%; }
+      .glacier .reveal .box.from-right {
+        top: 0;
+        right: -100%; }
+    .glacier .reveal:hover .box.from-top {
+      top: 0; }
+    .glacier .reveal:hover .box.from-bottom {
+      bottom: 0; }
+    .glacier .reveal:hover .box.from-left {
+      left: 0; }
+    .glacier .reveal:hover .box.from-right {
+      right: 0; }
+
+.glacier {
+  /**
+* Modals
+*
+*
+*/
+  /*
+.tabs .links li:hover {
+	background: #2f9dc9;
+	color:#FFF;
+}
+*/ }
   .glacier .accordion .item .link {
     padding: 10px;
-    background: #42cef4;
-    color: #FFF;
-    margin-bottom: 1px; }
+    background: #f1f1f1;
+    color: #222;
+    margin-bottom: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s all; }
     .glacier .accordion .item .link .toggle {
       cursor: pointer;
       font-weight: bold; }
+    .glacier .accordion .item .link .fluid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
   .glacier .accordion .item .content {
-    padding: 10px;
-    white-space: nowrap; }
+    padding: 10px; }
+  .glacier .accordion.vertical .item, .glacier .accordion.vertical .link, .glacier .accordion.vertical .content {
+    float: left;
+    height: 100%; }
+  .glacier .accordion.vertical .link {
+    margin-right: 1px; }
+  .glacier .accordion.vertical .content {
+    overflow: hidden; }
+  .glacier .accordion.vertical:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0; }
   .glacier .carousel {
     min-width: 50px;
     min-height: 50px;
     position: relative;
     overflow: hidden;
-    border: solid 1px #7f8d95;
     white-space: nowrap;
     /* !important. Allows the items to remain in one line */ }
     .glacier .carousel.vertical .item {
@@ -1884,7 +2021,7 @@ template {
       /* Fix the common alignment issue of inline-block (switch from default: baseline) */
       position: relative;
       /* !important. Without this the transitions can not be made */
-      margin-right: -4px;
+      margin-right: -3px;
       /* Removes the annoying spacing from inline-block */
       overflow: hidden;
       /* !important. Used when items have content of uneven height. without this boxes will not be aligned properly vertically*/ }
@@ -2179,11 +2316,11 @@ template {
     margin: 5px;
     background: #bec5d1;
     float: left; }
-  .glacier .progress .bar .inner {
-    position: absolute;
-    width: 0%;
-    height: 0%;
-    background: #6ac43c; }
+    .glacier .progress .bar .inner {
+      position: absolute;
+      width: 0%;
+      height: 0%;
+      background: #6ac43c; }
   .glacier .slider {
     position: relative;
     width: 100%;
@@ -2193,33 +2330,51 @@ template {
     -moz-box-shadow: inset 0 0 3px #999;
     -webkit-box-shadow: inset 0 0 3px #999;
     box-shadow: inset 0 0 3px #999; }
-  .glacier .slider .progress {
-    position: absolute;
-    left: 0%;
-    width: 0%;
-    height: 100%;
-    background: #29a9dc; }
-  .glacier .slider .progress .handle {
-    position: absolute;
-    border-radius: 5px;
-    background: #EEE;
-    width: 30px;
-    height: 30px;
-    margin-left: -15px;
-    top: -10px;
-    left: 100%;
-    color: #999;
-    line-height: 30px;
-    font-size: 16px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.25s all; }
-  .glacier .slider .progress .handle:active {
-    background: #333743;
-    color: #FFF; }
-  .glacier .slider .progress .handle.min {
-    left: 0%;
-    margin-left: -30px; }
+    .glacier .slider .progress {
+      position: absolute;
+      left: 0%;
+      width: 0%;
+      height: 100%;
+      background: #29a9dc; }
+      .glacier .slider .progress .handle {
+        position: absolute;
+        border-radius: 5px;
+        background: #EEE;
+        width: 30px;
+        height: 30px;
+        top: 50%;
+        left: 100%;
+        color: #999;
+        line-height: 30px;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.25s all;
+        transform: translate(-50%, -50%); }
+        .glacier .slider .progress .handle:active {
+          background: #333743;
+          color: #FFF; }
+        .glacier .slider .progress .handle.min {
+          left: 0%; }
+        .glacier .slider .progress .handle.top {
+          top: 0;
+          transform: translate(-50%, -100%); }
+        .glacier .slider .progress .handle.bottom {
+          top: 100%;
+          transform: translate(-50%, 0); }
+    .glacier .slider.vertical {
+      height: 100%;
+      width: 10px;
+      min-height: 200px; }
+      .glacier .slider.vertical .progress {
+        height: 0;
+        width: 100%;
+        bottom: 0; }
+        .glacier .slider.vertical .progress .handle {
+          left: 50% !important;
+          top: 0; }
+          .glacier .slider.vertical .progress .handle.min {
+            top: 100%; }
   .glacier .tabs .links {
     border-bottom: solid 1px #DDD; }
   .glacier .tabs .links li {
@@ -2278,7 +2433,3 @@ template {
     background-color: #666;
     outline: 0px solid slategrey;
     border-radius: 10px; }
-
-/* ------------------------------------------------------------------------------------------------------ */
-/*  																									  */
-/* ------------------------------------------------------------------------------------------------------ */

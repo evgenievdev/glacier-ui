@@ -1,0 +1,20 @@
+<!-- Experimental (not implemented yet) -->
+<gl-template name="loops-and-expressions">
+
+	[[#if variable.sub == $variable ]]
+		<div> The variable [[variable.sub]] is equal to [[variable]]</div>
+	[[#endif]]
+
+	[[#if variable.sub == "some value" ]]
+		<div> The variable [[variable.sub]] is equal to "some value"</div>
+	[[#endif]]
+
+	[[#each iterator in $object.sub ]]
+		<div>[[iterator]]</div>
+	[[#endeach]]
+
+	[[#for iterator=1 to $max.value ]]
+		<div>[[iterator]]</div>
+	[[#endfor]]
+
+</gl-template>

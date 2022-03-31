@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> Glacier-UI / Core Elements </title>
+
+	<!-- Load Glacier-UI -->
+	<link rel="stylesheet" href="../../dist/glacier.css"> 
+	<script type="text/javascript" src="../../dist/glacier.js"></script>
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+ 
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:13.5px;
+			color:#333;
+		}
+	 
+	</style>
+
+</head>
+<body class="glacier"> 
+
+	<div class="container clamp s-large center">
+
+		<h5>Horizontal Grid</h5>
+		<hr/>
+
+		<br/><br/>
+		<h6> Automatically resizeable columns </h6>
+
+		<div class="grid container">
+	  
+			<div class="row">
+
+				<div class="col auto">
+					<div class="container margin-5">
+						Resize with content
+					</div>
+				</div>
+				<div class="col">
+					<div class="container margin-5">
+						Auto fill remaining
+	 				</div>
+				</div>
+				<div class="col auto">
+					<div class="container margin-5">
+						Resize with content
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<br/><br/>
+		<h6> Fixed size columns </h6>
+		<br/>
+
+		<div class="grid container">
+
+			<div class="row">
+
+				<div class="col custom" style="flex-basis:250px;">
+					<div class="container margin-5">
+						Column 1 Fixed (250px)
+					</div>
+				</div>
+				<div class="col custom" style="flex-basis:500px;">
+					<div class="container margin-5">
+						Column 2 Fixed (500px)
+					</div>
+				</div>
+				<div class="col">
+					<div class="container margin-5">
+						Column 3 (Fill remaining space)
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<br/><br/>
+		<h6> Equal size columns (automatic resizing) </h6>
+		<br/>
+
+		<div class="grid container">
+
+			<div class="row">
+
+				<div class="col">
+					<div class="container margin-5">
+						Column 1
+					</div>
+				</div>
+				<div class="col">
+					<div class="container margin-5">
+						Column 2
+					</div>
+				</div>
+				<div class="col">
+					<div class="container margin-5">
+						Column 3
+					</div>
+				</div>
+	 
+			</div>
+
+		</div>
+
+		<br/><br/>
+		<h6> Stackable columns (resize browser to test) </h6>
+		<br/>
+
+		<div class="grid container">
+
+			<div class="row stackable">
+
+				<div class="col">
+					<div class="container margin-5">
+						Column 1
+					</div>
+				</div>
+				<div class="col">
+					<div class="container margin-5">
+						Column 2
+					</div>
+				</div>
+				<div class="col">
+					<div class="container margin-5">
+						Column 3
+					</div>
+				</div>
+	 
+			</div>
+
+		</div>
+
+		<br/><br/>
+		<h6> Relatively resizeable columns </h6>
+		<br/>
+
+		<div class="grid container">
+
+			<div class="row">
+
+				<div class="col">
+					<div class="container margin-5">
+						Column 1
+					</div>
+				</div>
+				<div class="col resize x3">
+					<div class="container margin-5">
+						Column 2 (3 times wider than others)
+					</div>
+				</div>
+				<div class="col">
+					<div class="container margin-5">
+						Column 3
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<br/>
+
+		<h5>Vertical Grid</h5>
+		<hr/> 
+
+		<br/><br/>
+		<h6> Relatively resizeable rows </h6>
+		<br/>
+ 
+		<div class="grid vertical container" style="height:500px;">
+	 
+			<div class="row resize x2 container margin-5">
+				<div class="expand">
+					<div class="container margin-5"> Row 1 Expanded element</div>
+					<div class="container margin-5"> Row 1 Expanded element</div>
+				</div>
+			</div>
+			<div class="row container margin-5">
+				<div class="container margin-5"> Row 2 Floated element </div>
+				<div class="container margin-5"> Row 2 Floated element </div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+  
+	<title> Edgefolds </title>
+
+	<!-- Load Glacier-UI -->
+	<script src="../../dist/glacier.min.js"></script>
+	<link rel="stylesheet" href="../../dist/glacier.min.css">
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:14px;
+			color:#333;
+			font-weight:300;
+			background:#f1f1f1;
+		}
+		 
+		 
+	</style>
+
+</head>
+<body class="glacier"> 
+
+<div style="display:table;margin:0pt auto;">
+	
+	<br/>
+	<h1 class="no-margin">Edgefold</h1>
+	<h6>Add shadows to any corner or edge of an element to give off an illusion of slight folding/raise</h6>
+	<hr class="hue-grey undim-3"/>
+
+	<div class="msg info">
+		<i class="fa fa-info icon left"></i>
+		This module is compatible with many other modules such as the Palette, Grid and more. You can also mix-and-match generics.
+	</div>
+
+	<div class="msg warning"> 
+		<i class="fa fa-warning icon left"></i>
+		This module will not work on Internet Explorer due to lack of filter:blur() support
+	</div>
+
+	<div class="edgefold" style="width:760px;" >
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content" style="height:150px;">
+			<h3 class="align-center">Basic</h3>
+		</div>
+	</div>
+
+	<div class="edgefold left" style="width:350px;">
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content">
+			<h3>John Smith</h3>
+			<hr/><br/>
+			<div class="avatar hue-blue undim-1">JS</div>
+			<br/>
+			<div style="text-align:center;">
+				<h4>Marketing Executive</h4>
+				<h5 class="txt-grey">San Francisco, CA</h5>
+				<h6 class="txt-grey ">IT Technology and Services</h6>
+			</div>
+			 
+			<br/> 
+			<hr/>
+			<button class="button basic ripple">Profile</button>
+			<button class="button basic ripple hue-aqua dim-2 hue-over-aqua dim-over-3 txt-white right">Message</button>
+		</div>
+	</div>
+	
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content">
+			<h3>Mary Jones</h3>
+			<hr/><br/>
+			<div class="avatar hue-red undim-1">MJ</div>
+			<br/>
+			<div style="text-align:center;">
+				<h4>Software Engineer</h4>
+				<h5 class="txt-grey">San Diego, CA</h5>
+				<h6 class="txt-grey ">Logistics United</h6>
+			</div>
+			 
+			<br/> 
+			<hr/>
+			<button class="button basic ripple">Profile</button>
+			<button class="button basic ripple hue-aqua dim-2 hue-over-aqua dim-over-3 txt-white right">Message</button>
+		</div>
+	</div>
+
+	<br class="clear"/>
+	
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade bottom-left"></div>
+		<div class="shade bottom-right"></div>
+		<div class="shade top-left"></div>
+		<div class="shade top-right"></div>
+		<div class="content" style="height:150px;">
+			<h3 class="align-center">All Corners</h3>
+		</div>
+	</div>
+	
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade top-left"></div>
+		<div class="shade top-right"></div>
+		<div class="content" style="height:150px;">
+			<h3 class="align-center">Top Corners</h3>
+		</div>
+	</div>
+
+	<br class="clear"/>
+	
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade top-left"></div>
+		<div class="shade bottom-left"></div>
+		<div class="content" style="height:150px;">
+			<h3 class="align-center">Left Corners</h3>
+		</div>
+	</div>
+	
+	<div class="edgefold left" style="width:350px;" >
+		<div class="shade top-right"></div>
+		<div class="shade bottom-right"></div>
+		<div class="content" style="height:150px;">
+			<h3 class="align-center">Right Corners</h3>
+		</div>
+	</div>
+
+	<br class="clear"/>
+
+	<div class="edgefold left" style="width:350px;">
+		<div class="shade edge-bottom thin hue-grey undim-2"></div>
+		<div class="content" style="height:150px;">
+			<h3 class="align-center">Bottom Thin</h3>
+		</div>
+	</div>
+
+	<div class="edgefold left" style="width:350px;">
+		<div class="shade edge-top thin hue-grey undim-2"></div>
+		<div class="content" style="height:150px;">
+			<h3 class="align-center">Top Thin</h3>
+		</div>
+	</div>
+
+	<br class="clear"/>
+
+	<div class="edgefold left" style="width:350px;">
+		<div class="shade edge-left thin hue-grey undim-2"></div>
+		<div class="content" style="height:150px;">
+			<h3 class="align-center">Left Thin</h3>
+		</div>
+	</div>
+
+	<div class="edgefold left" style="width:350px;">
+		<div class="shade edge-right thin hue-grey undim-2"></div>
+		<div class="content" style="height:150px;">
+			<h3 class="align-center">Right Thin</h3>
+		</div>
+	</div>
+
+	<br class="clear"/>
+
+	<div class="edgefold left" style="width:760px;">
+		<div class="shade edge-top thin hue-grey undim-2"></div>
+		<div class="shade edge-bottom thin hue-grey undim-2"></div>
+		<div class="content" style="height:150px;">
+			<h3 class="align-center">Top & Bottom</h3>
+		</div>
+	</div>
+
+	<br class="clear"/>
+
+	<div class="edgefold left" style="width:760px;">
+		<div class="shade edge-bottom thin hue-red "></div>
+		<div class="content hue-red txt-white" style="height:150px;">
+			<h3 class="align-center">Palette</h3>
+		</div>
+	</div>
+
+	<br class="clear"/>
+
+	<div class="edgefold left" style="width:760px;">
+		<div class="shade edge-bottom thin middle half hue-grey undim-2" ></div>
+		<div class="shade edge-top thin middle half hue-grey undim-2" ></div>
+		<div class="content" style="height:150px;background:#f1f1f1;">
+			<h3 class="align-center">Blend Horizontal</h3>
+		</div>
+	</div>
+
+	<br class="clear"/>
+
+	<div class="edgefold left" style="width:760px;">
+		<div class="shade edge-left thin middle half hue-grey undim-2" ></div>
+		<div class="shade edge-right thin middle half hue-grey undim-2" ></div>
+		<div class="content" style="height:150px;background:#f1f1f1;">
+			<h3 class="align-center">Blend Vertical</h3>
+		</div>
+	</div>
+ 
+ 
+</div>
+
+</body>
+</html>

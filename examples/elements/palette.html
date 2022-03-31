@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> Glacier-UI / Core Elements </title>
+
+	<!-- Load Glacier-UI -->
+	<link rel="stylesheet" href="../../dist/glacier.css"> 
+	<script type="text/javascript" src="../../dist/glacier.js"></script>
+	
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:13.5px;
+			color:#333;
+		}
+		.cube {
+			margin:2px 0px;
+			height:40px;
+			float:left;
+			line-height:40px;
+			color:#fff;
+			text-align: center;
+			border-radius:0px;
+	 
+			 text-shadow: 1px 1px rgba(0,0,0,0.3);
+		}
+ 
+	</style>
+
+</head>
+<body class="glacier"> 
+
+	<div class="container clamp s-large center">
+		<h5> Color Palette </h5>
+		<hr/>
+		<div id="colors" class="grid"></div>
+	</div>
+
+	<!-- This script is for demonstration purposes only. You don't need to include it to use the palette classes. -->
+	<script>
+
+		var ruleList = document.styleSheets[0].cssRules;
+
+		var colors = ["grey","green","aqua","blue","purple","orange","red"];
+		var lighten = 4;
+		var darken = 4;
+
+		var div = document.getElementById("colors");
+		var html = '';
+		for( var i = 0 ; i < colors.length; i++ ) {
+
+			html += '<div class="row">';
+
+			for( var j = lighten ; j > 0 ; j-- ) {
+				html += '<div class="col cube hue-'+colors[i]+' undim-'+j+'"> undim-'+j+' </div>';
+			}
+			html += '<div class="col cube hue-'+colors[i]+'"> '+colors[i]+' </div>';
+			for( var j = 1 ; j <= darken ; j++ ) {
+				html += '<div class="col cube hue-'+colors[i]+' dim-'+j+'"> dim-'+j+' </div>';
+			}
+			html += '<br class="clear"/>';
+
+			html += '</div>';
+
+		}
+		div.innerHTML = html;
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> Glacier-UI / Core Elements </title>
+
+	<!-- Load Glacier-UI -->
+	<link rel="stylesheet" href="../../dist/glacier.css"> 
+	<script type="text/javascript" src="../../dist/glacier.js"></script>
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:13.5px;
+			color:#333;
+			line-height: 20px;
+		}
+	 
+	</style>
+
+</head>
+<body class="glacier"> 
+
+	<div class="grid">
+		<div class="row">
+
+	<div class="col">
+
+		<div id="nav-left" class="nav side" style="min-height:100%;width:300px;">
+		  
+			<div id="inner" class="inner">
+				<div style="text-align: center;padding:10px;">
+					 
+					<br/> 
+					<h4> DASHBOARD </h4>
+					<br/>
+					<div class="user hue-aqua dim-2" style="width:100px;height:100px;line-height:100px;color:#fff;font-size:60px;border-radius:50%;margin:0pt auto;">
+						<i class="fa fa-user"></i>
+					</div>
+					<br/>
+					<div class="divider"></div>
+				</div>
+				<div style="padding:10px;font-size:13px;margin-bottom:10px;text-transform: uppercase;letter-spacing: 2px;color:white;"> &raquo; Navigation </div>
+				<ul>
+					<div class="divider"></div>
+					<li id="installation" tabindex="1" class="active"> <i class="fa fa-home"></i> Dashboard </li>
+					<div class="divider"></div>
+					<li id="getting-started" tabindex="1"> <i class="fa fa-project-diagram"></i> My Projects </li>
+					<div class="divider"></div>
+					<li id="grid" tabindex="1" > <i class="fa fa-user-plus"></i> My Publications </li>
+					<div class="divider"></div>
+					<li id="visibility" tabindex="1" > <i class="fa fa-network-wired"></i> Social </li>
+					<div class="divider"></div>
+					<li id="visibility" tabindex="1" > <i class="fa fa-user"></i> Profile </li>
+					<div class="divider"></div>
+					<li id="visibility" tabindex="1" > <i class="fa fa-cog"></i> Preferences </li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	
+	<div class="col-fill">
+
+	<div class="container  center" id="responsive">
+
+	  <h1>Themes</h1>
+	  <h6>Parse and inject css using defined data sets</h6>
+	  <hr/><br/>
+	  	<button class="button basic ripple" id="apply-light">Apply Light Theme</button>
+	  	<button class="button basic ripple" id="apply-dark">Apply Dark Theme</button>
+	  <hr/><br/>
+	  <div class="cards inline" id="projects">
+
+						<div class="card" gls-filter="nissan">
+							<div class="image">
+								<img src="../_images/cars/1.jpg"/>
+								<div class="overlay">
+									<button class="button glass align-center"> <i class="fa fa-cog"></i> </button>
+								</div>
+							</div>
+							<div class="content">
+								<div class="title">
+									<h4>Nissan Skyline GT-R</h4>
+								</div>
+								<div class="description">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu vestibulum metus. Donec non cursus elit. In tincidunt placerat rutrum. Sed a dignissim mi. Praesent vel quam in arcu molestie dictum non in nisi. Suspendisse vel porttitor mi, et suscipit tellus. Nulla vestibulum urna sapien, eget mattis nisi mattis quis.
+								</div>
+								<div class="footer">
+									Posted by: <a href="#">B.Fujiwara</a> on 19/10/2018 at 21:05
+								</div>  
+							</div>
+						</div>
+
+						<div class="card" gls-filter="honda">
+							<div class="image">
+								<img src="../_images/cars/2.jpg"/>
+								<div class="overlay light">
+									<button class="button light align-center"> <i class="fa fa-cog"></i> </button>
+								</div>
+							</div>
+							<div class="content">
+								<div class="title">
+									<h4>Honda Civic</h4>
+								</div>
+								<div class="description">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu vestibulum metus. Donec non cursus elit. In tincidunt placerat rutrum. Sed a dignissim mi. Praesent vel quam in arcu molestie dictum non in nisi. Suspendisse vel porttitor mi, et suscipit tellus. Nulla vestibulum urna sapien, eget mattis nisi mattis quis.
+								</div>
+								<div class="footer">
+									Posted by: <a href="#">B.Fujiwara</a> on 19/10/2018 at 21:05
+								</div>  
+							</div>
+						</div>
+
+						<div class="card" gls-filter="honda">
+							<div class="image">
+								<img src="../_images/cars/3.jpg"/>
+								<div class="overlay">
+									<button class="button light align-center"> <i class="fa fa-cog"></i> </button>
+								</div>
+							</div>
+							<div class="content">
+								<div class="title">
+									<h4>Honda DC2 Integra Type-R</h4>
+								</div>
+								<div class="description">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu vestibulum metus. Donec non cursus elit. In tincidunt placerat rutrum. Sed a dignissim mi. Praesent vel quam in arcu molestie dictum non in nisi. Suspendisse vel porttitor mi, et suscipit tellus. Nulla vestibulum urna sapien, eget mattis nisi mattis quis.
+								</div>
+								<div class="footer">
+									Posted by: <a href="#">B.Fujiwara</a> on 19/10/2018 at 21:05
+								</div>  
+							</div>
+						</div>
+
+					</div>
+
+	</div>
+
+</div>
+
+</div>
+
+</div>
+
+ 
+
+	<script>
+
+		var cssRules = '.nav.side .inner{background:[[nav.bgColor]]; color:[[nav.color]];}';
+			cssRules += '.nav.side .inner ul li{ padding:30px 20px;text-transform:uppercase;border-bottom:0;font-size:14px; }';
+			cssRules += '.nav.side .inner ul li:hover, .nav.side .inner ul li.active, .nav.side .inner ul li.active:hover{ border-left:solid 8px [[nav.hoverBorderLeft]]; background:[[nav.hoverBackground]]; color:[[nav.hoverColor]]; }';
+			cssRules += '.nav.side .divider{ margin:0;[[nav.hr]] }';
+			cssRules += '.nav.side ul li i{margin-right:15px;}';
+			cssRules += '##button## {background:red;}';
+			cssRules += '##button:hover## {background:green;}';
+			cssRules += '.card .content{ background:[[card.bgColor]]; color:[[card.color]]; }';
+
+		var dataDark = {
+			nav: {
+				color: "#CCC",
+				bgColor: "#222",
+				hoverColor: "#FFF",
+				hoverBorderLeft: "#09E8D9",
+				hoverBackground: "#111",
+				hr: "border-top:solid 1px #111;border-bottom:solid 1px #333;"
+			},
+			card: {
+				color: '#fff',
+				bgColor: '#222'
+			}
+		};
+
+		var dataLight = {
+			nav: {
+				color: "#444",
+				bgColor: "#FFF",
+				hoverColor: "#222",
+				hoverBorderLeft: "#CCC",
+				hoverBackground: "#f1f1f1",
+				hr: "border:0;background:#DDD;"
+			},
+			card: {
+				color: '#222',
+				bgColor: '#fff'
+			}
+		};
+
+		var Themer = new Glacier.modules.themer({
+			template: cssRules,
+			events: {}
+		});
+
+		Themer.define( "theme-dark" , dataDark );
+		Themer.define( "theme-light" , dataLight );
+		Themer.apply("theme-light");
+
+		var $light = $("#apply-light");
+		var $dark = $("#apply-dark");
+
+		$light.click(function(){
+			Themer.apply("theme-light");
+		})
+
+		$dark.click(function(){
+			Themer.apply("theme-dark");
+		})
+
+	</script>
+
+</body>
+</html>

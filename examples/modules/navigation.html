@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+  
+	<title> Edgefolds </title>
+
+	<!-- Load Glacier-UI -->
+	<script src="../../dist/glacier.min.js"></script>
+	<link rel="stylesheet" href="../../dist/glacier.min.css">
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:14px;
+			color:#333;
+			font-weight:300;
+			background:#f1f1f1;
+		}
+		 
+		 
+	</style>
+
+</head>
+<body class="glacier"> 
+
+	<div class="grid">
+				 
+			<div class="row">
+				 
+				<div class="col">
+				
+					 <div id="nav-left" class="nav side" style="height:100%;min-height:100vh;">
+					 	<div class="nav-overlay"></div>
+						<div id="inner" class="inner">
+							<div style="text-align: center;padding:10px;">
+								<br/>
+								<button class="button close-nav">X</button>
+								<br/><br/>
+								<h5> LEFT MENU </h5>
+								<hr/>
+							</div>
+							 
+							<ul>
+								<li tabindex="1" onclick="navleftSubRight.open();">Open Right Sub-menu &gt;</li>
+								<li tabindex="1">Link 1</li>
+								<li tabindex="1">Link 2</li>
+								<li tabindex="1">Sub-menu</li>
+									<ul style="margin-left:20px;font-style:italic;">
+										<li tabindex="1">Sub-link 1</li>
+										<li tabindex="1">Sub-link 2</li>
+										<li tabindex="1">Sub-link 3</li>
+									</ul>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+
+				<div class="col">
+				
+					 <div id="nav-left-sub-right" class="nav side" style="height:100%;min-height:100vh;border-left:solid 1px #DDD!important;">
+					 
+						<div id="inner" class="inner">
+							<div style="text-align: center;padding:10px;">
+								<br/>
+								<button class="button close-nav">&lt;</button>
+								<br/><br/>
+								<h5> SUB-RIGHT </h5>
+								<hr/>
+							</div>
+							 
+							<ul style="text-align: center;">
+								<li tabindex="1">
+									<h1><i class="fa fa-bicycle"></i></h1>
+									BICYCLE
+								</li>
+								<li tabindex="1">
+									<h1><i class="fa fa-car"></i></h1>
+									CAR
+								</li>
+								<li tabindex="1">
+									<h1><i class="fa fa-train"></i></h1>
+									TRAIN
+								</li>
+								<li tabindex="1">
+									<h1><i class="fa fa-subway"></i></h1>
+									SUBWAY
+								</li>
+							</ul>
+
+						</div>
+					</div>
+					
+				</div>
+
+				<div class="col-fill" id="page-content" style="min-height:400px;">
+
+
+					<div id="nav-top" class="nav vertical" style="width:100%;">
+						<div id="inner" class="inner">
+							<ul>
+								<li tabindex="1">Link 1</li>
+								<li tabindex="1">Link 2</li>
+								<li tabindex="1">Link 3</li> 
+							</ul>
+						</div>
+					</div>
+
+
+
+					<div style="padding:20px;font-size:16px;line-height:30px;">
+
+						<h2>Navigation Demo</h2>
+						<br/>
+
+					<button class="button basic hue-white" id="left-toggle"> Toggle Left </button>
+					<button class="button basic hue-white" id="right-toggle"> Toggle Right </button>
+					<button class="button basic hue-white" id="top-toggle"> Toggle Top </button>
+					<button class="button basic hue-white" id="bottom-toggle"> Toggle Bottom </button>
+<br/><br/><br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin risus nunc, ullamcorper et pretium tempor, tincidunt at urna. Etiam aliquet est interdum lacus cursus, nec pretium nunc faucibus. Curabitur vel porttitor ipsum. Morbi nunc lacus, consectetur volutpat lorem in, ultrices facilisis neque. Aenean tristique nisi sed arcu maximus, vitae scelerisque odio mattis. Maecenas luctus elit id pharetra pellentesque. Nunc eu venenatis eros. Pellentesque vel mauris imperdiet, tristique metus sit amet, finibus purus.
+<br/><br/> 
+Etiam sodales nunc sed enim tincidunt eleifend. Suspendisse tristique urna arcu, mollis mattis diam ultrices in. Sed ut ligula quis dolor pretium cursus consequat id leo. Mauris maximus euismod gravida. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam eu fringilla tellus. Cras vel augue vel tellus suscipit bibendum id imperdiet sapien. Mauris sed felis sit amet augue pellentesque aliquam. Vestibulum auctor neque in feugiat rutrum. Quisque sodales volutpat efficitur. Curabitur porttitor turpis sit amet mauris volutpat, sit amet scelerisque justo interdum. Cras accumsan sapien vel nunc auctor posuere. Morbi ut tempor urna. Proin eu ex libero.
+ 
+					</div>
+
+					 
+					<div id="nav-bottom" class="nav vertical bottom" style="width:100%;">
+						<div id="inner" class="inner">
+							<ul>
+								<li tabindex="1">Link 1</li>
+								<li tabindex="1">Link 2</li>
+								<li tabindex="1">Link 3</li>
+							</ul>
+						</div>
+					</div>
+				 
+					 
+
+				</div>
+
+				<div class="col">
+				
+					 <div id="nav-right" class="nav side" style="width:250px;height:100%;min-height:100vh;">
+						<div id="inner" class="inner">
+							<h4>Right Menu</h4>
+							<hr/>
+							<ul>
+								<li tabindex="1">Link 1</li>
+								<li tabindex="1">Link 2</li>
+								<li tabindex="1">Link 3</li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+			
+			</div>
+
+		</div>
+	 
+
+	<script>
+
+		var navleft = new Glacier.modules.navigation( "#nav-left" , {
+			width: "320px",
+			open: true,
+			animation: true,
+			duration: 500
+		} , {
+			onCloseStart: function() {
+				navleftSubRight.close();
+			}
+		});
+
+		var navleftSubRight = new Glacier.modules.navigation( "#nav-left-sub-right" , {
+			width: "150px",
+			open: false,
+			animation: true,
+			duration: 500
+		});
+		 
+		var navright = new Glacier.modules.navigation( "#nav-right" , {
+			width: "200px",
+			open: false
+		});
+
+		var navtop = new Glacier.modules.navigation( "#nav-top" , {
+			direction: "vertical",
+			height: "45px",
+			open: false
+		});
+
+		var navbottom = new Glacier.modules.navigation( "#nav-bottom" , {
+			direction: "vertical",
+			height: "100px",
+			open: false
+		});
+		
+		$("#left-toggle").click(function(){
+			navleft.toggle();
+		});
+
+		$("#right-toggle").click(function(){
+			navright.toggle();
+		});
+
+		$("#top-toggle").click(function(){
+			navtop.toggle();
+		});
+
+		$("#bottom-toggle").click(function(){
+			navbottom.toggle();
+		});
+
+	</script>
+
+</body>
+</html>

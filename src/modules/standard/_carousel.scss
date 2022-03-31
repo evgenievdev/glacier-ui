@@ -4,7 +4,6 @@
 	min-height:50px;
 	position:relative;
 	overflow:hidden;
-	border:solid 1px #7f8d95;
 	white-space: nowrap; /* !important. Allows the items to remain in one line */
 
 	&.vertical {
@@ -24,7 +23,7 @@
 		display:inline-block;
 		vertical-align: top; /* Fix the common alignment issue of inline-block (switch from default: baseline) */
 		position:relative; /* !important. Without this the transitions can not be made */
-		margin-right:-4px; /* Removes the annoying spacing from inline-block */
+		margin-right:-3px; /* Removes the annoying spacing from inline-block */
 		overflow:hidden; /* !important. Used when items have content of uneven height. without this boxes will not be aligned properly vertically*/
 		&.fluid {
 			width:100%;

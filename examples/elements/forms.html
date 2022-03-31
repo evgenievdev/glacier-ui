@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> Glacier-UI / Core Elements </title>
+
+	<!-- Load Glacier-UI -->
+	<link rel="stylesheet" href="../../dist/glacier.css"> 
+	<script type="text/javascript" src="../../dist/glacier.js"></script>
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:13.5px;
+			color:#333;
+		}
+	 
+	</style>
+
+</head>
+<body class="glacier"> 
+
+	<div class="container clamp s-large center">
+		<h5> Forms </h5>
+		<hr/>
+		
+		<div class="input">
+
+			<h6> Expand on Focus </h6>
+			<input class="expanding" type="text" placeholder="John Doe" /> <br/>
+
+			<h6> Fluid with Labels </h6>
+			<div class="field">
+				<label for="email"> Default </label>
+				<label for="email" class="halign-center"> Centered </label>
+				<label for="email" class="right"> Floated - Right </label>
+				<input id="email" class="fluid" type="text" placeholder="email@address.com" /> <br/>
+			</div>
+
+			<h6> Highlight on Focus </h6>
+			<input class="fluid highlight" type="text" placeholder="Discount Code" /> <br/>
+
+			<h6> Field with Icon </h6>
+			<div class="field">
+				<div class="icon">
+					<i class="fa fa-folder-o"></i>
+				</div>
+				<input class="fluid" type="text" placeholder="Folder name" /> <br/>
+			</div>
+
+			<h6> Disabled </h6>
+			<div class="field">
+				<input class="fluid" type="text" placeholder="Disabled" disabled /> <br/>
+			</div>
+
+			<h6> Valid </h6>
+			<div class="field">
+				<input class="fluid valid" type="text" placeholder="Valid" />
+			</div>
+			<div class="field">
+				<input class="fluid valid icon-left" type="text" placeholder="Valid (Icon left)" /> <br/>
+			</div>
+
+			<h6> Invalid </h6>
+
+			<div class="field">
+				<input class="fluid invalid" type="text" placeholder="Invalid" />
+			</div>
+			<div class="field">
+				<input class="fluid invalid icon-left" type="text" placeholder="Invalid (Icon left)" /> <br/>
+			</div>
+
+			<h6> Mixing Generics </h6>
+
+			<div class="field">
+				<input class="fluid radius-25 border-2 padding-25 big" type="text" placeholder="Border Radius 25px + Width 2px + Padding 25px + Text Size: Big" />
+			</div>
+
+			<h6> Overline, Expanding </h6>
+			<input class="overline expanding" type="text" placeholder="10 Downing Street" /> <br/>
+ 			
+ 			<h6> Underline, Fluid </h6>
+			<input class="underline fluid" type="text" placeholder="Address Line 2" /> <br/>
+
+			<h6> Underline, Invalid </h6>
+			<input class="underline fluid invalid" type="text" placeholder="Invalid" /> <br/>
+			<input class="underline fluid invalid icon-left" type="text" placeholder="Invalid (Icon left)" /> <br/>
+
+			<h6> Underline, Valid </h6>
+			<input class="underline fluid valid" type="text" placeholder="Valid" /> <br/>
+			<input class="underline fluid valid icon-left" type="text" placeholder="Valid (Icon left)" /> <br/>
+
+		</div>
+
+
+	</div>
+
+</body>
+</html>

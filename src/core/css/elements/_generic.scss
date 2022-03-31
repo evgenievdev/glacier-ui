@@ -15,6 +15,10 @@
 .uppercase { text-transform: uppercase; }
 .bold { font-weight:bold; }
 .italic { font-style:italic; }
+.upright { 
+	writing-mode: vertical-lr;
+ 	text-orientation: upright; 
+}
 
 .regular {
 	font-size: 1em;
@@ -90,7 +94,9 @@
 	clear:both;
 }
 
- 
+.txt-center {
+	text-align:center;
+}
 
 .glass-dark {
 	background:rgba(0,0,0,0.8)!important;
@@ -155,7 +161,12 @@
 
 @include generic-shadow( 5 );
 
-
+.fluid-h {
+	width:100%!important;
+}
+.fluid-v {
+	height:100%!important;
+}
 
 /* ----------------------------------[ CENTERING ]-------------------------------------- */
 
@@ -170,11 +181,7 @@
 .align-center-x { left:50%; transform: translateX(-50%)!important; }
 .align-center-y { top:50%; transform: translateY(-50%)!important; }
 .align-center { left: 50%; top:50%; transform: translate(-50%,-50%)!important; }
-
-.center-text {
-	text-align:center!important;
-}
-
+ 
 .pivot-center { transform: translate(-50%,-50%); }
 .pivot-center-x { transform: translateX(-50%); }
 .pivot-center-y { transform: translateY(-50%); }
@@ -244,6 +251,17 @@
 	background: #191b21;
 	border-bottom: solid 1px #333743;
 	margin: 10px 0px;
+}
+
+.avatar {
+	width:100px;
+	height:100px;
+	margin:0pt auto;
+	border-radius:50%;
+	line-height:100px;
+	color:#fff;
+	text-align:center;
+	font-size:40px;
 }
 
 @media all and (min-width: $screen-width-small) {

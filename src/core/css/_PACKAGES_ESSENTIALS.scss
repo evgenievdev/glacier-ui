@@ -1,0 +1,24 @@
+//------------------------------------------------------------------------------------------------
+// 								Which packages to include in BUILD
+//------------------------------------------------------------------------------------------------
+	
+	// Packages will be compiled in the specified order here.
+	// If you wish to exclude a package from the building process, simply remove it from this file.
+ 
+	@import "elements/default";
+	@import "elements/generic";
+	@import "elements/grid";
+ 	@import "elements/flow";
+ 	@import "elements/forms";
+ 	@import "elements/navigations";
+ 	@import "elements/buttons";
+ 	@import "elements/messages";
+ 	@import "elements/spline";
+ 	@import "elements/palette"; 
+
+ 	// Import CSS for all elements (non-js)
+ 	@import "../../elements/cards";
+ 	@import "../../elements/posts";
+ 	@import "../../elements/edgefolds";
+ 	@import "../../elements/reveal";
+ 

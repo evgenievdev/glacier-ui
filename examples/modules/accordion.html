@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+  
+	<title> Accordion </title>
+
+	<!-- Load Glacier-UI -->
+	<script src="../../dist/glacier.min.js"></script>
+	<link rel="stylesheet" href="../../dist/glacier.min.css">
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:14px;
+			color:#333;
+			font-weight:300;
+			background:#f1f1f1;
+		}
+		 
+		.box {
+			padding:20px 30px;
+			margin:20px 0px;
+			background:#fff;
+		}
+	</style>
+
+</head>
+<body class="glacier"> 
+
+<div style="display:table;margin:0pt auto;min-width:850px;">
+	
+	<br/>
+	<h1 class="no-margin">Accordion</h1>
+	<h6>Simple horizontal and vertical accordions with support for icons (e.g. FontAwesome).</h6>
+	<hr class="hue-grey undim-3"/>
+
+
+
+	<div class="box">
+
+		<h5>Horizontal / Expand Single</h5><hr/>
+
+		<div class="accordion" id="accordion1">
+						
+			<div class="item">
+			
+				<div class="link">
+					<li class="left"> Accordion Item 1 </li>
+					<div class="toggle right">
+						<span class="open"> open </span>
+						<span class="close"> close </span>
+					</div>
+					<br class="clear"/>
+				</div>
+				
+				<div class="content">
+					Lorem ipsum dolor sit amet  				
+				</div>
+			
+			</div>
+
+			<div class="item">
+			
+				<div class="link">
+					<li class="left"> Accordion Item 2 </li>
+					<div class="toggle right">
+						<span class="open"> open </span>
+						<span class="close"> close </span>
+					</div>
+					<br class="clear"/>
+				</div>
+				
+				<div class="content">				
+					Lorem ipsum dolor sit amet  				
+				</div>
+			
+			</div>
+
+			<div class="item">
+			
+				<div class="link">
+					<li class="left"> Accordion Item 3 </li>
+					<div class="toggle right">
+						<span class="open"> open </span>
+						<span class="close"> close </span>
+					</div>
+					<br class="clear"/>
+				</div>
+				
+				<div class="content">				
+					Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet    				
+				</div>
+			
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+
+	<div class="box">
+
+		<h5>Horizontal / Expand Multiple / Fluid Links / Generics</h5><hr/>
+
+		<div class="accordion" id="accordion2">
+
+			<div class="item">
+			
+				<div class="link radius-10 big">
+					<li> Accordion Item 1 - Click me </li>
+					<div class="toggle">
+						<span class="close fluid"></span>
+						<span class="open fluid"></span>
+					</div>
+				</div>
+				
+				<div class="content">				
+					Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet    				
+				</div>
+			
+			</div>
+
+			<div class="item">
+			
+				<div class="link radius-10 medium">
+					<li> Accordion Item 2 - Click me </li>
+					<div class="toggle">
+						<span class="close fluid"></span>
+						<span class="open fluid"></span>
+					</div>
+				</div>
+				
+				<div class="content">				
+					Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet    				
+				</div>
+			
+			</div>
+
+			<div class="item">
+			
+				<div class="link radius-10">
+					<li> Accordion Item 3 - Click me </li>
+					<div class="toggle">
+						<span class="close fluid"></span>
+						<span class="open fluid"></span>
+					</div>
+				</div>
+				
+				<div class="content">			
+					Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet    				
+				</div>
+			
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+	<div class="box">
+
+		<h5>Vertical / Expand Multiple / Opened / Palette</h5><hr/>
+ 
+		<div class="accordion vertical" id="accordion3">
+
+			<div class="item">
+			
+				<div class="link hue-red undim-1 txt-white">				 
+					<div class="toggle big">
+						<span class="open"> <i class="fa fa-plus-square-o"></i> </span>
+						<span class="close"> <i class="fa fa-minus-square-o"></i> </span>
+					</div>
+					<br/>
+					<li class="upright"> Item 1 </li>
+				</div>
+				
+				<div class="content">
+					<div class="inner" style="width:250px;">
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+					</div>
+				</div>
+			
+			</div>
+
+			<div class="item">
+			
+				<div class="link hue-orange undim-1 txt-white">		 
+					<div class="toggle big">
+						<span class="open"> <i class="fa fa-plus-square-o"></i> </span>
+						<span class="close"> <i class="fa fa-minus-square-o"></i> </span>
+					</div>
+					<br/>
+				 	<li class="upright"> Item 2 </li>
+				</div>
+				
+				<div class="content">
+					<div class="inner" style="width:250px;">
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+					</div>
+				</div>
+			
+			</div>
+
+			<div class="item">
+			
+				<div class="link hue-purple undim-1 txt-white">		 
+					<div class="toggle big">
+						<span class="open"> <i class="fa fa-plus-square-o"></i> </span>
+						<span class="close"> <i class="fa fa-minus-square-o"></i> </span>
+					</div>
+					<br/>
+				 	<li class="upright"> Item 2 </li>
+				</div>
+				
+				<div class="content">
+					<div class="inner" style="width:250px;">
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+					</div>
+				</div>
+			
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+	<div class="box">
+
+		<h5>Vertical / Expand Single / Palette / Fluid Links / FontAwesome / Events </h5><hr/>
+ 
+		<div class="accordion vertical" id="accordion4">
+
+			<div class="item">
+			
+				<div class="link hue-red undim-1 txt-white">				 
+					<div class="toggle">
+						<span class="close fluid"></span>
+						<span class="open fluid"></span>
+					</div>
+					<li> <i class="fa fa-firefox giant"></i>  </li>
+				</div>
+				
+				<div class="content">
+					<div class="inner" style="width:250px;">
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+					</div>
+				</div>
+			
+			</div>
+
+			<div class="item">
+			
+				<div class="link hue-orange undim-1 txt-white">		 
+					<div class="toggle">
+						<span class="close fluid"></span>
+						<span class="open fluid"></span>
+					</div>
+				 	<li> <i class="fa fa-chrome giant"></i> </li>
+				</div>
+				
+				<div class="content">
+					<div class="inner" style="width:250px;">
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+					</div>
+				</div>
+			
+			</div>
+
+			<div class="item">
+			
+				<div class="link hue-purple undim-1 txt-white">		 
+					<div class="toggle">
+						<span class="close fluid"></span>
+						<span class="open fluid"></span>
+					</div>
+				 	<li> <i class="fa fa-edge giant"></i>  </li>
+				</div>
+				
+				<div class="content">
+					<div class="inner" style="width:250px;">
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+						Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet  
+					</div>
+				</div>
+			
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+
+	<div class="box">
+
+		<h5>Nested Accordions</h5><hr/>
+ 
+		<div class="accordion" id="accordion5">
+
+			<div class="item">
+			
+				<div class="link">
+					<li> Nested Accordion - Click me </li>
+					<div class="toggle">
+						<span class="close fluid"></span>
+						<span class="open fluid"></span>
+					</div>
+				</div>
+				
+				<div class="content">				
+					Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet    				
+				</div>
+			
+			</div>
+
+			<div class="item">
+			
+				<div class="link">
+					<li> Accordion Item 2 - Click me </li>
+					<div class="toggle">
+						<span class="close fluid"></span>
+						<span class="open fluid"></span>
+					</div>
+				</div>
+				
+				<div class="content">
+				
+					Below is a nested accordion
+
+					<!-- Nested Accordion -->
+					<div class="accordion" id="accordion6">
+						<div class="item">
+							<div class="link">
+								<li> Accordion Item 1 - Click me </li>
+								<div class="toggle">
+									<span class="close fluid"></span>
+									<span class="open fluid"></span>
+								</div>
+							</div>
+							<div class="content">
+								Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet    						
+							</div>
+						
+						</div>
+						<div class="item">						
+							<div class="link">
+								<li> Accordion Item 2 - Click me </li>
+								<div class="toggle">
+									<span class="close fluid"></span>
+									<span class="open fluid"></span>
+								</div>
+							</div>							
+							<div class="content">						
+								Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet    							
+							</div>
+						</div>
+					</div>   
+
+
+				</div>
+			
+			</div>
+ 
+		</div>
+
+	</div>
+ 
+
+
+	<div class="box">
+		<h5>Initialize with Compiler</h5><hr/>
+
+		<gl-accordion parallel="true" animation="true" opened="false" duration="400">
+			<div class="accordion">
+				<div class="item">
+					<div class="link">
+						<li> Accordion Item 1 - Click me </li>
+						<div class="toggle">
+							<span class="close fluid"></span>
+							<span class="open fluid"></span>
+						</div>
+					</div>
+					<div class="content">
+						Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet    						
+					</div>
+				
+				</div>
+				<div class="item">						
+					<div class="link">
+						<li> Accordion Item 2 - Click me </li>
+						<div class="toggle">
+							<span class="close fluid"></span>
+							<span class="open fluid"></span>
+						</div>
+					</div>							
+					<div class="content">						
+						Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet    							
+					</div>
+				</div>
+			</div> 
+		</gl-accordion>
+
+
+
+	</div>
+
+	<script>
+
+		 
+
+			var accordion1 = new Glacier.modules.accordion("#accordion1");
+
+			var accordion2 = new Glacier.modules.accordion("#accordion2",{
+				parallel: true,
+				opened: false,
+				animation:true,
+				duration: 300,
+				// Optional stuff for more advanced users
+				itemSelector: ".item",
+				linkSelector: ".link",
+				contentSelector: ".content"
+			});
+
+			var accordion3 = new Glacier.modules.accordion("#accordion3",{
+				opened:true,
+				parallel:true,
+				animation:true,
+				duration:400
+			});
+
+			// Accordion Events
+			var accordion4 = new Glacier.modules.accordion("#accordion4",{
+				opened:false,
+				parallel:false,
+				events: {
+					// e : Object { link , close , open , content }
+					onOpen: function( e ) {
+
+						for(var i =0;i<accordion4.data.length;i++){
+							accordion4.data[i].link.removeClass("padding-20");
+						}
+						e.link.addClass("padding-20");
+
+					},
+					onClose: function( e ) {
+						e.link.removeClass("padding-20");
+					},
+					onOpenAll: function( e ) {},
+					onCloseAll: function( e ) {}
+				}
+			});
+
+			// Nested accordions
+			var accordion5 = new Glacier.modules.accordion("#accordion5");
+            var accordion6 = new Glacier.modules.accordion("#accordion6");  
+
+            // Using the compiler     
+            Glacier.compiler.run();                              
+
+	</script>
+
+</div>
+</body>
+</html>

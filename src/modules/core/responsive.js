@@ -207,9 +207,7 @@
 
 			}
 		}
-
-		var delay = cfg.animation && cfg.duration > 0 ? cfg.duration : 0;
-
+ 
 		// Go through all elements and set their visibility according to their properties
 		elements.each( function( id ) {
 		
@@ -228,22 +226,20 @@
 		 		// If it is, then make the element visible. Otherwise, hide it. 
 		 		if( cs == thisScreen ) {
  					 
-		 			if( cfg.toggleContent && !isStatic ) {
-		 				if( current.is(":visible") ) { break; }
-		 				current.stop(true,true).fadeIn(delay); 
+		 			if( cfg.toggleContent && !isStatic && current.is(":hidden") ) {
+		 				current.stop(true,true).show(); 
 		 			}
-		 			if( typeof events.onShow == 'function' ) {
+		 			if( typeof events.onShow == 'function' && current.is(":visible") ) {
 		 				events.onShow( elements , current , cs );
 		 			}
 		 			break;
 
 		 		} else {
  
-		 			if( cfg.toggleContent && !isStatic ) { 
-		 				if( current.is(":hidden") ) { break; }
-		 				current.stop(true,true).fadeOut(delay); 
+		 			if( cfg.toggleContent && !isStatic && current.is(":visible") ) { 
+		 				current.stop(true,true).hide(); 
 		 			}
-		 			if( typeof events.onShow == 'function' ) {
+		 			if( typeof events.onShow == 'function' && current.is(":hidden") ) {
 		 				events.onHide( elements , current , cs );
 		 			}
 
@@ -287,8 +283,6 @@
 		defaultSettings: function() {
 
 			return {
-				animation: true,
-				duration: 400,
 				toggleContent: true,	// Set to false to use this instance as a sensor only which fires events
 				dynamic: true
 			};

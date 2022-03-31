@@ -831,7 +831,7 @@
 
 	});
 
-	internal.defineModule( _modname , instance );
+	internal.defineModule( _modname , instance , _modname , "."+_modname );
  
 
 })( Glacier , Glacier.utils , Glacier.internal );

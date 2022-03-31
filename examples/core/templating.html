@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> Glacier-UI / Core Elements </title>
+
+	<!-- Load Glacier-UI -->
+	<link rel="stylesheet" href="../../dist/glacier.css"> 
+	<script type="text/javascript" src="../../dist/glacier.js"></script>
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:13.5px;
+			color:#333;
+			line-height: 20px;
+		}
+	 
+	</style>
+
+</head>
+<body class="glacier"> 
+
+	<div class="container clamp s-large center" id="responsive">
+
+	  <h1>Templating</h1>
+	  <h6>The example below lets you inject and parse templates. Templates can be loaded from files or be fed as a string.</h6>
+ 
+	  <hr/>
+	  <br/>
+
+	  Inject a template instance: 
+	  <button class="button basic" onclick='addCustomer();'>Inject Profile Template</button>
+	  <button class="button basic" onclick='addProduct();'>Inject Product Template</button>
+	  <button class="button basic" onclick='removeLast();'>Remove Last Template Instance</button>
+	  <br/><br/>
+	  <hr/>
+	  <br/>
+ 
+	   
+	  <div class="customers"></div>
+
+	  <div class="products"></div>
+
+	</div>
+
+	<script>
+
+		// Create an instance of the templating engine
+		var engine = new Glacier.modules.templating();
+		/*
+		// Load a template into the system by using a piece of HTML already in the DOM (but hidden)
+		engine.loadTemplate("template-name", $("#template-name").html() , false );
+		*/
+		// Load a template into the system via AJAX request (single template)
+		engine.loadTemplate("product", "templates/product.html" , true );
+
+		// Load a set of templates from a file using AJAX
+		engine.loadTemplate( null , "templates/profile.html" , true );
+		 
+
+		var customer1 = {
+			"name": "John",
+			"address": "10 Downing Street",
+			"phone-number": "+447123456789",
+			"fridge": {
+				"beer": {
+					"favourite": function( varName ) {
+						console.log("Variable name : " + varName ) 
+						return "Staropramen"; 
+					}
+				}
+			},
+			"car" : {
+				"year": 1998,
+				"name": "Nissan Skyline R34 GT-R",
+				"mileage": 65000,
+				"color": "Blue",
+				"history": {
+					"maintenance": "01.08.2018",
+					"MOT": "30.12.2018",
+					"repair": [
+						{ date: "01.01.2015" , parts: "Oil+filter ; Brakes" },
+						{ date: "05.11.2017" , parts: "Clutch" }
+					]
+				}
+			}
+		};
+		//engine.inject( injectTarget , templateName , dataObject );
+
+		var instances = [];
+		function addProduct() {
+
+			instances.push( engine.inject( $(".products") , "product" , {
+				number: "Product No "+Math.floor(Math.random()*1000),
+				price: (50+Math.floor(Math.random()*1000))+"$"
+			} ) );
+
+		}
+
+		function addCustomer() {
+			instances.push( engine.inject( $(".customers") , "customer" , customer1 ) );
+		}
+
+		function removeLast() {
+			var n = instances.length;
+			if( n <= 0 ) { return; }
+			instances[ n-1 ].remove();
+			instances.pop();
+		}
+
+	 
+
+	</script>
+
+</body>
+</html>

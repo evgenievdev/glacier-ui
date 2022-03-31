@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+  
+	<title> Progress </title>
+
+	<!-- Load Glacier-UI -->
+	<script src="../../dist/glacier.min.js"></script>
+	<link rel="stylesheet" href="../../dist/glacier.min.css">
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:14px;
+			color:#333;
+			font-weight:300;
+			background:#f1f1f1;
+		}
+		 
+		.box {
+			padding:20px 30px;
+			margin:20px 0px;
+			background:#fff;
+		}
+	</style>
+
+</head>
+<body class="glacier"> 
+
+<div style="display:table;margin:0pt auto;max-width: 1280px;">
+	
+	<br/>
+	<h1 class="no-margin">Progress</h1>
+	<h6>Horizontal and vertical progress bars divisible into equal length segments.</h6>
+	<hr class="hue-grey undim-3"/>
+
+	<div class="msg info">
+		<i class="fa fa-info icon left"></i>
+		This module is compatible with other components such as the Palette, Generics and more.
+	</div>
+
+	<div class="box">
+		<h4> Single Bar ; Fixed Width ; Horizontal ; Precise (Value=50%) </h4>
+		<div class="progress horizontal" id="progress1" style="width:600px;height:20px;">
+			<div class="bar"><div class="inner"></div></div>
+			<br class="clear"/>
+		</div>
+	</div>
+
+	<div class="box">
+		<h4> Multiple Bars ; Fixed Width ; Horizontal ; Precise (Value=50%) </h4>
+		<div class="progress horizontal" id="progress2" style="width:600px;height:20px;">
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<br class="clear"/>
+		</div>
+	</div>
+
+	<div class="box">
+		<h4> Multiple Bars ; Fluid Width ; Horizontal ; Precise (Value=50%) </h4>
+		<div class="progress horizontal" id="progress3" style="width:100%;height:20px;">
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<br class="clear"/>
+		</div>
+	</div>
+
+	<div class="box">
+		<h4> Multiple Bars ; Fluid Width ; Horizontal ; Block Mode (Value=50%) </h4>
+		<div class="progress horizontal" id="progress4" style="width:100%;height:20px;">
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<br class="clear"/>
+		</div>
+	</div>
+
+	<div class="box">
+		<h4> Multiple Bars ; Fluid Width ; Horizontal ; Custom Colors (Pattern) </h4>
+		<div class="progress horizontal" id="progress5" style="width:100%;height:20px;">
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<br class="clear"/>
+		</div>
+	</div>
+
+	<div class="box">
+		<h4> Multiple Bars ; Fluid Width ; Horizontal ; Custom Colors (Range - HSL Linear) </h4>
+		<div class="progress horizontal" id="progress6" style="width:100%;height:20px;">
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<br class="clear"/>
+		</div>
+	</div>
+
+
+	<div class="box">
+		<h4> Multiple Bars ; Fixed Height ; Vertical ; Precise (Value=50%) </h4>
+		<div class="progress" id="progress7" style="width:20px;height:250px;">
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<div class="bar"><div class="inner"></div></div>
+			<br class="clear"/>
+		</div>
+	</div>
+ 
+	<script>
+
+		var progress1 = new Glacier.modules.progress("#progress1",{});
+			progress1.setValue(50);
+
+		var progress2 = new Glacier.modules.progress("#progress2",{});
+			progress2.setValue(50);
+
+		var progress3 = new Glacier.modules.progress("#progress3",{});
+			progress3.setValue(50);
+			
+		var progress4 = new Glacier.modules.progress("#progress4",{
+			precise: false
+		});
+			progress4.setValue(50);
+
+		var progress5 = new Glacier.modules.progress("#progress5",{
+			colors: [ "red","orange","yellow","green" ]
+		});
+			progress5.setValue(95);
+
+		var progress6 = new Glacier.modules.progress("#progress6",{
+			colors: {minH: 0 , minS: 60, minL: 50 , maxH: 100 , maxS: 60 , maxL: 50}
+		});
+			progress6.setValue(95);
+
+		var progress7 = new Glacier.modules.progress("#progress7",{});
+			progress7.setValue(50);
+
+	</script>
+
+</div>
+</body>
+</html>

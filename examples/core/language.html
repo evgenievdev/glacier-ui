@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="team" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> Glacier-UI / Core Elements </title>
+
+	<!-- Load Glacier-UI -->
+	<link rel="stylesheet" href="../../dist/glacier.css"> 
+	<script type="text/javascript" src="../../dist/glacier.js"></script>
+
+	<!-- Load JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+ 
+	<style>
+
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+		body {
+			font-family: 'Open Sans',sans-serif;
+			font-size:13.5px;
+			color:#333;
+			line-height: 20px;
+		}
+	 	ol li { margin-left:20px; list-style-type: square;}
+	</style>
+
+</head>
+<body class="glacier"> 
+
+	<div class="container clamp s-large center" id="responsive">
+
+	  <h1>Language Processing</h1>
+	  <h6>The example below lets you set the language of the page, which changes the values in the corresponding elements dynamically.</h6>
+	  <br/><br/>
+	  <hr/>
+	  <br/>
+
+	  <div id="browser-language"></div>
+	  <div id="current-language"></div>
+
+	  <br/>
+	  <hr/>
+	  <br/>
+
+	  Select a language pack : 
+
+	  <button class="button" onclick='detectAutomatically();'>Detect Automatically</button>
+	  <button class="button" onclick='setLanguage("en");'>English</button>
+	  <button class="button" onclick='setLanguage("bg");'>Български</button>
+	  <button class="button" onclick='setLanguage("de");'>Deutsch</button>
+
+	  <br/><br/>
+	  <hr/>
+	  <br/>
+
+	 	<h5>
+			<gl-var name="title"></gl-var>
+		</h5>
+		<gl-var name="slogan"></gl-var>
+		<br/>
+		<ol>
+			<li> <gl-var name="list.first"></gl-var> </li>
+			<li> <gl-var name="list.second"></gl-var> </li>
+	 	</ol>
+	 	<br/>
+	 	<gl-var name="text"></gl-var>
+
+	</div>
+
+	<script>
+		
+		// Some arbitrary language packages. The JSON structure for each package should be identical. If a package doesn't have a property that another package does, if that package is selected, it will not overwrite that variable.
+		var data = {
+			"en" : {
+				"title": "Title",
+				"slogan": "This is a slogan",
+				"list" : {
+					"first" : "First item",
+					"second": "Second item"
+				},
+				"text": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."
+			},
+			"bg" : {
+				"title": "Заглавие",
+				"slogan": "Това е под-заглавие",
+				"list" : {
+					"first" : "Първи елемент",
+					"second": "Втори елемент"
+				},
+				"text": "Съществуват много вариации на пасажа Lorem Ipsum, но повечето от тях са променени по един или друг начин чрез добавяне на смешни думи или разбъркване на думите, което не изглежда много достоверно."
+			},
+			"de" : {
+				"title": "Überschrift",
+				"slogan": "Das ist ein Slogan",
+				"list" : {
+					"first" : "Erster Gegenstand",
+					"second": "Zweiter Gegenstand"
+				},
+				"text": "Es gibt viele Variationen der Passages des Lorem Ipsum, aber der Hauptteil erlitt Änderungen in irgendeiner Form, durch Humor oder zufällige Wörter welche nicht einmal ansatzweise glaubwürdig aussehen."
+			}
+		};
+
+		// Create an instance of the language module. Try to set the document as the target.
+		// You can also pick and choose sections to alter the language of. This can be useful if you wish to separate your workflow.
+		// The target uses JQuery syntax: i.e. ".glacier" OR $(document) OR $(".glacier") all work
+ 		var lang = new Glacier.modules.language( "body" , {
+ 			animation: true,				// JQuery animation when changing languages (when changing the content of the variables)
+			animationType: "fadeIn",		// Default is fadeIn
+			animationSpeed: "slow",			// Default is "slow" (~400ms)
+			cloneData: false,				// By default the language data is pass-by-reference. You may not wish it to be that way, especially if the
+			variableTag: "gl-var"		// The HTML tag used to determine which elements in the page are dynamic variables. Default is "gl-var" It is recommended to leave this as is to avoid conflict with other modules
+ 		}, {
+ 			onLanguageSet: function( name ) {
+ 				console.log("Language set to : " + name );
+ 			},
+ 			onVariableSet: function( langName , varName , varValue , varElement ) {
+				varValue = varValue + " some modifier";
+				return varValue;
+			}
+ 		});
+ 		// Detect the browser's current language (ISO-639 standard)
+ 		var browserLanguage = lang.detectBrowserLanguage();
+
+ 		// Add some language packs (add a single pack)
+ 		lang.addLanguage( "en" , data["en"] );
+ 		lang.addLanguage( "bg" , data["bg"] );
+
+ 		// Add some language packs (from an object)
+ 		lang.addLanguages( data );
+ 		// Set the current language to English (note, some codes can be en-US, en-GB). If your language packs don't have such specifics but still have "en", it will be loaded for all browsers which have a variation of English (i.e. en-US,en-GB,etc.). 
+ 		lang.setLanguage("en");
+
+ 		// --------------------------------------------------- CODE BELOW IS FOR DEMONSTRATION PURPOSES ONLY ---------------------------------------------------
+
+ 		var $bLang = $("#browser-language");
+ 		var $curLang = $("#current-language");
+
+ 		function setLanguage( code ) {
+
+ 			lang.setLanguage( code );
+ 			$curLang.html("<br/> The current language package is: " + lang.active);
+
+ 		}
+
+ 		function detectAutomatically() {
+ 			// Detect and set language automatically based on the language packs defined and the browser's current language
+ 			lang.setLanguageAutomatically();
+ 			$curLang.html("<br/>. The current language package is: " + lang.active);
+ 		}
+
+ 		 
+ 		$bLang.html( "Your browser language is (ISO-639): " + browserLanguage);
+ 		$curLang.html("<br/>The current language package is: " + lang.active);
+		
+	</script>
+
+</body>
+</html>
